@@ -18,14 +18,25 @@
     <div class="static-bg-effects"></div>
 
     <!-- شريط التنقل المستقبلي -->
-    <nav class="navbar navbar-expand-lg navbar-futuristic" id="mainNavbar">
+    <nav class="navbar navbar-expand-lg navbar-futuristic fixed-top" id="mainNavbar">
         <div class="container">
             <a class="navbar-brand text-neon-blue text-glow slide-in-left" href="#">
                 <i class="fas fa-futbol me-2 float-animation"></i>
                 <span class="fw-bold">⚽ ملاعب المستقبل</span>
             </a>
-            <div class="navbar-nav ms-auto slide-in-right">
-                <!-- سيتم إضافة عناصر المصادقة هنا بواسطة JavaScript -->
+
+            <!-- زر القائمة للجوال -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon">
+                    <i class="fas fa-bars"></i>
+                </span>
+            </button>
+
+            <!-- القائمة القابلة للطي -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav ms-auto slide-in-right">
+                    <!-- سيتم إضافة عناصر المصادقة هنا بواسطة JavaScript -->
+                </div>
             </div>
         </div>
     </nav>
@@ -143,9 +154,80 @@
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
     
+    <!-- قسم المطور -->
+    <footer class="developer-section py-5 mt-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10 text-center">
+                    <!-- بطاقة المطور -->
+                    <div class="developer-card card-revolutionary p-4 mb-4">
+                        <div class="developer-avatar mb-3">
+                            <div class="avatar-glow">
+                                <i class="fas fa-code developer-icon"></i>
+                            </div>
+                        </div>
+
+                        <h3 class="developer-name text-shimmer mb-2">
+                            💻 المطور: Sepan Bahraz Ahmad 💻
+                        </h3>
+
+                        <p class="developer-title text-glow-soft mb-4">
+                            🚀 مطور مواقع ومبرمج متخصص في التقنيات الحديثة 🚀
+                        </p>
+
+                        <!-- روابط التواصل الاجتماعي -->
+                        <div class="social-links">
+                            <h5 class="text-neon-blue mb-3">
+                                <i class="fas fa-share-alt me-2"></i>
+                                تواصل معي
+                            </h5>
+
+                            <div class="social-buttons">
+                                <!-- فيسبوك -->
+                                <a href="https://www.facebook.com/share/1LmBX9H1uE/" target="_blank" class="social-btn facebook-btn">
+                                    <i class="fab fa-facebook-f"></i>
+                                    <span>Facebook</span>
+                                </a>
+
+                                <!-- إنستغرام -->
+                                <a href="https://www.instagram.com/sepan_b_ahmad?igsh=MTg0d3dqZGs1eGlhMA==" target="_blank" class="social-btn instagram-btn">
+                                    <i class="fab fa-instagram"></i>
+                                    <span>Instagram</span>
+                                </a>
+
+                                <!-- تيك توك -->
+                                <a href="https://www.tiktok.com/@sepan_b_ahmad?_t=ZS-8x8HB46qGcK&_r=1" target="_blank" class="social-btn tiktok-btn">
+                                    <i class="fab fa-tiktok"></i>
+                                    <span>TikTok</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- رسالة شكر -->
+                        <div class="thank-you-message mt-4 p-3 glass-effect" style="border-radius: 15px;">
+                            <p class="text-white mb-0">
+                                <i class="fas fa-heart text-neon-pink me-2"></i>
+                                شكراً لاستخدام موقع حجز الملاعب الخماسية
+                                <i class="fas fa-heart text-neon-pink ms-2"></i>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- حقوق الطبع والنشر -->
+                    <div class="copyright-section">
+                        <p class="text-white-50 mb-0">
+                            © 2024 جميع الحقوق محفوظة | تم التطوير بواسطة
+                            <span class="text-neon-green fw-bold">Sepan Bahraz Ahmad</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <!-- ملفات JavaScript المخصصة -->
     <script src="firebase-config-vercel.js"></script>
     <script src="security-simple.js"></script>
@@ -184,11 +266,71 @@
             }, 500);
         }
 
+        // 🎨 تأثيرات قسم المطور
+        function setupDeveloperEffects() {
+            const developerCard = document.querySelector('.developer-card');
+            const socialBtns = document.querySelectorAll('.social-btn');
+
+            // تأثير ظهور البطاقة عند التمرير
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '0';
+                        entry.target.style.transform = 'translateY(50px)';
+                        entry.target.style.transition = 'all 1s ease';
+
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, 200);
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            if (developerCard) {
+                observer.observe(developerCard);
+            }
+
+            // تأثيرات الأزرار الاجتماعية
+            socialBtns.forEach((btn, index) => {
+                btn.style.opacity = '0';
+                btn.style.transform = 'translateX(-30px)';
+                btn.style.transition = 'all 0.6s ease';
+
+                setTimeout(() => {
+                    btn.style.opacity = '1';
+                    btn.style.transform = 'translateX(0)';
+                }, 500 + (index * 200));
+
+                // تأثير النقر
+                btn.addEventListener('click', function(e) {
+                    // إنشاء تأثير الموجة
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    ripple.classList.add('ripple-effect');
+
+                    this.appendChild(ripple);
+
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+        }
+
         // حماية الصفحة الرئيسية - يجب تسجيل الدخول
         window.addEventListener('load', function() {
             // تهيئة التأثيرات البصرية
             initStaticBackground();
             setupNavbarScroll();
+            setupDeveloperEffects();
 
             // تأثير ظهور فوري للصفحة
             document.body.style.opacity = '0';

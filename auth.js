@@ -484,8 +484,12 @@ function updateUIBasedOnAuth(user) {
 function updateNavbar(user) {
     console.log('تحديث شريط التنقل، المستخدم:', user);
 
-    // البحث عن عنصر التنقل
-    const navbar = document.querySelector('.navbar-nav');
+    // البحث عن عنصر التنقل - دعم الهيكل الجديد والقديم
+    let navbar = document.querySelector('#navbarNav .navbar-nav');
+    if (!navbar) {
+        navbar = document.querySelector('.navbar-nav');
+    }
+
     if (!navbar) {
         console.log('لم يتم العثور على شريط التنقل');
         return;

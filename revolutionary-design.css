@@ -230,8 +230,9 @@ body {
 
     /* تحسين بطاقات الأيام */
     .day-card-square {
-        min-height: 120px !important;
-        max-height: 140px !important;
+        min-height: 160px !important;
+        max-height: 180px !important;
+        padding: 1.5rem !important;
     }
 
     /* تحسين شريط التنقل */
@@ -262,8 +263,9 @@ body {
     }
 
     .day-card-square {
-        min-height: 140px !important;
-        max-height: 160px !important;
+        min-height: 180px !important;
+        max-height: 200px !important;
+        padding: 1.75rem !important;
     }
 
     .card-revolutionary {
@@ -405,21 +407,59 @@ body {
 
     .navbar-toggler {
         border: none !important;
-        padding: 0.25rem 0.5rem !important;
+        padding: 0.5rem !important;
         background: rgba(255, 255, 255, 0.1) !important;
-        border-radius: 8px !important;
+        border-radius: 10px !important;
+        transition: all 0.3s ease !important;
     }
 
     .navbar-toggler:focus {
-        box-shadow: 0 0 10px rgba(74, 144, 226, 0.3) !important;
+        box-shadow: 0 0 15px rgba(74, 144, 226, 0.4) !important;
+        outline: none !important;
+    }
+
+    .navbar-toggler:hover {
+        background: rgba(74, 144, 226, 0.2) !important;
+        transform: scale(1.05) !important;
+    }
+
+    .navbar-toggler-icon {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .navbar-toggler-icon i {
+        color: var(--neon-blue) !important;
+        font-size: 1.2rem !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .navbar-toggler:hover .navbar-toggler-icon i {
+        color: white !important;
+        transform: rotate(90deg) !important;
     }
 
     .navbar-collapse {
-        background: rgba(0, 0, 0, 0.9) !important;
+        background: rgba(0, 0, 0, 0.95) !important;
         margin-top: 1rem !important;
-        border-radius: 10px !important;
-        padding: 1rem !important;
-        backdrop-filter: blur(10px) !important;
+        border-radius: 15px !important;
+        padding: 1.5rem !important;
+        backdrop-filter: blur(15px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+        animation: slideDown 0.3s ease !important;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .navbar-nav {
@@ -427,15 +467,33 @@ body {
     }
 
     .nav-link {
-        padding: 0.75rem 1rem !important;
-        margin: 0.25rem 0 !important;
-        border-radius: 8px !important;
+        padding: 1rem 1.5rem !important;
+        margin: 0.5rem 0 !important;
+        border-radius: 12px !important;
         transition: all 0.3s ease !important;
+        position: relative !important;
+        overflow: hidden !important;
+    }
+
+    .nav-link::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: -100% !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: linear-gradient(90deg, transparent, rgba(74, 144, 226, 0.3), transparent) !important;
+        transition: left 0.5s ease !important;
+    }
+
+    .nav-link:hover::before {
+        left: 100% !important;
     }
 
     .nav-link:hover {
         background: rgba(74, 144, 226, 0.2) !important;
-        transform: translateX(5px) !important;
+        transform: translateX(10px) scale(1.02) !important;
+        box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3) !important;
     }
 
     .dropdown-menu {
@@ -455,6 +513,35 @@ body {
     .dropdown-item:hover {
         background: rgba(74, 144, 226, 0.2) !important;
         color: white !important;
+    }
+}
+
+/* إخفاء زر الهامبرغر في الشاشات الكبيرة */
+@media (min-width: 992px) {
+    .navbar-toggler {
+        display: none !important;
+    }
+
+    .navbar-collapse {
+        display: flex !important;
+        background: transparent !important;
+        margin-top: 0 !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        backdrop-filter: none !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    .nav-link {
+        padding: 0.5rem 1rem !important;
+        margin: 0 0.25rem !important;
+        border-radius: 8px !important;
+    }
+
+    .nav-link:hover {
+        transform: translateY(-2px) !important;
+        background: rgba(74, 144, 226, 0.1) !important;
     }
 }
 
@@ -617,10 +704,20 @@ body {
 /* ===== بطاقات الأيام المربعة ===== */
 .day-card-square {
     aspect-ratio: 1;
-    min-height: 150px;
-    max-height: 180px;
+    min-height: 200px;
+    max-height: 220px;
     border-radius: 20px;
     transition: var(--transition-lightning);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.1), rgba(255, 255, 255, 0.1));
+    border: 2px solid var(--neon-blue);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
 .day-card-square:hover {
@@ -696,12 +793,24 @@ body {
 .day-card-square .day-name {
     color: var(--neon-purple) !important;
     text-shadow: 0 0 10px var(--neon-purple) !important;
+    font-size: 1.2rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 0.5rem !important;
 }
 
 .day-card-square .day-number {
     color: var(--neon-green) !important;
     text-shadow: 0 0 15px var(--neon-green) !important;
-    font-size: 2rem !important;
+    font-size: 2.5rem !important;
+    font-weight: 800 !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.day-card-square .day-date {
+    color: var(--neon-blue) !important;
+    text-shadow: 0 0 8px var(--neon-blue) !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
 }
 
 /* ===== تحسينات السرعة الخارقة ===== */
@@ -1048,11 +1157,24 @@ body {
 
     /* تحسين بطاقات الأيام للمس */
     .day-card-square {
-        min-height: 100px !important;
-        max-height: 120px !important;
+        min-height: 140px !important;
+        max-height: 160px !important;
         cursor: pointer;
         -webkit-user-select: none;
         user-select: none;
+        padding: 1.25rem !important;
+    }
+
+    .day-card-square .day-name {
+        font-size: 1rem !important;
+    }
+
+    .day-card-square .day-number {
+        font-size: 2rem !important;
+    }
+
+    .day-card-square .day-date {
+        font-size: 0.8rem !important;
     }
 
     /* تحسين بطاقات الأوقات للمس */
@@ -1511,6 +1633,176 @@ body {
     margin-bottom: 1rem;
 }
 
+/* ===== تجاوب صفحة تسجيل الدخول للجوال ===== */
+@media (max-width: 768px) {
+    .login-magical-bg {
+        padding: 0.5rem !important;
+    }
+
+    .card-magical-login {
+        margin: 0.5rem !important;
+        padding: 1.5rem 1rem !important;
+        border-radius: 15px !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .login-title {
+        font-size: 1.8rem !important;
+        margin-bottom: 1rem !important;
+        text-align: center !important;
+    }
+
+    .login-icon {
+        font-size: 2.5rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .icon-glow {
+        width: 80px !important;
+        height: 80px !important;
+    }
+
+    .login-icon-container {
+        margin-bottom: 1.5rem !important;
+        text-align: center !important;
+    }
+
+    /* تحسين النماذج في صفحة تسجيل الدخول */
+    .form-floating {
+        margin-bottom: 1rem !important;
+    }
+
+    .form-floating > .form-control {
+        font-size: 16px !important; /* منع التكبير في iOS */
+        padding: 12px 15px !important;
+        border-radius: 10px !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        color: white !important;
+    }
+
+    .form-floating > .form-control:focus {
+        background: rgba(255, 255, 255, 0.15) !important;
+        border-color: var(--neon-blue) !important;
+        box-shadow: 0 0 10px rgba(74, 144, 226, 0.3) !important;
+    }
+
+    .form-floating > label {
+        color: rgba(255, 255, 255, 0.7) !important;
+        font-size: 14px !important;
+    }
+
+    /* تحسين الأزرار في صفحة تسجيل الدخول */
+    .btn-magical {
+        width: 100% !important;
+        padding: 12px !important;
+        font-size: 16px !important;
+        margin: 0.5rem 0 !important;
+        border-radius: 10px !important;
+    }
+
+    .btn-magical:hover {
+        transform: translateY(-1px) !important;
+    }
+
+    /* تحسين الروابط */
+    .login-links {
+        text-align: center !important;
+        margin-top: 1rem !important;
+    }
+
+    .login-links a {
+        display: block !important;
+        margin: 0.5rem 0 !important;
+        font-size: 14px !important;
+        color: rgba(255, 255, 255, 0.8) !important;
+        text-decoration: none !important;
+    }
+
+    .login-links a:hover {
+        color: var(--neon-blue) !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-magical-login {
+        margin: 0.25rem !important;
+        padding: 1rem 0.75rem !important;
+        border-radius: 12px !important;
+    }
+
+    .login-title {
+        font-size: 1.5rem !important;
+    }
+
+    .login-icon {
+        font-size: 2rem !important;
+    }
+
+    .icon-glow {
+        width: 60px !important;
+        height: 60px !important;
+    }
+
+    .form-floating > .form-control {
+        padding: 10px 12px !important;
+        font-size: 16px !important;
+    }
+
+    .btn-magical {
+        padding: 10px !important;
+        font-size: 14px !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .login-magical-bg {
+        padding: 0.25rem !important;
+    }
+
+    .card-magical-login {
+        margin: 0.1rem !important;
+        padding: 0.75rem 0.5rem !important;
+        border-radius: 10px !important;
+    }
+
+    .login-title {
+        font-size: 1.3rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    .login-icon {
+        font-size: 1.8rem !important;
+    }
+
+    .icon-glow {
+        width: 50px !important;
+        height: 50px !important;
+    }
+
+    .form-floating {
+        margin-bottom: 0.75rem !important;
+    }
+
+    .form-floating > .form-control {
+        padding: 8px 10px !important;
+        font-size: 15px !important;
+    }
+
+    .form-floating > label {
+        font-size: 12px !important;
+    }
+
+    .btn-magical {
+        padding: 8px !important;
+        font-size: 13px !important;
+    }
+
+    .login-links a {
+        font-size: 12px !important;
+    }
+}
+
 /* ===== صفحة الأوقات الأسطورية ===== */
 .times-magical-section {
     position: relative;
@@ -1583,8 +1875,9 @@ body {
     }
 
     .day-card-square {
-        min-height: 90px !important;
-        max-height: 110px !important;
+        min-height: 120px !important;
+        max-height: 140px !important;
+        padding: 1rem !important;
     }
 
     .time-card-square-available,
@@ -1639,8 +1932,9 @@ body {
     }
 
     .day-card-square {
-        min-height: 80px !important;
-        max-height: 100px !important;
+        min-height: 100px !important;
+        max-height: 120px !important;
+        padding: 0.75rem !important;
     }
 
     .card-revolutionary {
@@ -1681,6 +1975,365 @@ body {
     * {
         -webkit-font-smoothing: antialiased !important;
         -moz-osx-font-smoothing: grayscale !important;
+    }
+}
+
+/* ===== قسم المطور ===== */
+.developer-section {
+    background: linear-gradient(135deg,
+        rgba(26, 26, 46, 0.9) 0%,
+        rgba(22, 33, 62, 0.9) 50%,
+        rgba(26, 26, 46, 0.9) 100%);
+    border-top: 2px solid rgba(74, 144, 226, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.developer-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(74, 144, 226, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(108, 92, 231, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.developer-card {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 2px solid rgba(74, 144, 226, 0.3) !important;
+    transition: all 0.3s ease;
+}
+
+.developer-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: rgba(74, 144, 226, 0.6) !important;
+    box-shadow: 0 15px 40px rgba(74, 144, 226, 0.2) !important;
+}
+
+/* أيقونة المطور */
+.developer-avatar {
+    position: relative;
+    display: inline-block;
+}
+
+.avatar-glow {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: avatar-pulse 3s ease-in-out infinite;
+}
+
+.developer-icon {
+    font-size: 2.5rem;
+    color: white;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes avatar-pulse {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(74, 144, 226, 0.5);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(74, 144, 226, 0.8);
+        transform: scale(1.05);
+    }
+}
+
+/* اسم المطور */
+.developer-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.developer-title {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+}
+
+/* أزرار التواصل الاجتماعي */
+.social-links h5 {
+    margin-bottom: 1.5rem;
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-width: 120px;
+    justify-content: center;
+}
+
+.social-btn i {
+    font-size: 1.2rem;
+    margin-right: 8px;
+}
+
+.social-btn span {
+    font-size: 0.9rem;
+}
+
+/* فيسبوك */
+.facebook-btn {
+    background: linear-gradient(45deg, #1877f2, #42a5f5);
+    color: white;
+    box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
+}
+
+.facebook-btn:hover {
+    color: white;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(24, 119, 242, 0.5);
+}
+
+/* إنستغرام */
+.instagram-btn {
+    background: linear-gradient(45deg, #e4405f, #fd1d1d, #fcb045);
+    color: white;
+    box-shadow: 0 4px 15px rgba(228, 64, 95, 0.3);
+}
+
+.instagram-btn:hover {
+    color: white;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(228, 64, 95, 0.5);
+}
+
+/* تيك توك */
+.tiktok-btn {
+    background: linear-gradient(45deg, #000000, #ff0050);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 0, 80, 0.3);
+}
+
+.tiktok-btn:hover {
+    color: white;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 0, 80, 0.5);
+}
+
+/* تأثير الموجة للأزرار */
+.social-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.social-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* رسالة الشكر */
+.thank-you-message {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(253, 109, 168, 0.3) !important;
+}
+
+.thank-you-message p {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* حقوق الطبع والنشر */
+.copyright-section {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.copyright-section p {
+    font-size: 0.9rem;
+}
+
+/* تجاوب قسم المطور للجوال */
+@media (max-width: 768px) {
+    .developer-section {
+        padding: 2rem 0 !important;
+    }
+
+    .developer-card {
+        margin: 1rem !important;
+        padding: 2rem 1rem !important;
+    }
+
+    .avatar-glow {
+        width: 60px !important;
+        height: 60px !important;
+    }
+
+    .developer-icon {
+        font-size: 2rem !important;
+    }
+
+    .developer-name {
+        font-size: 1.4rem !important;
+    }
+
+    .developer-title {
+        font-size: 1rem !important;
+    }
+
+    .social-buttons {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0.75rem !important;
+    }
+
+    .social-btn {
+        width: 200px !important;
+        padding: 10px 15px !important;
+    }
+
+    .social-btn i {
+        font-size: 1rem !important;
+    }
+
+    .social-btn span {
+        font-size: 0.8rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .developer-card {
+        margin: 0.5rem !important;
+        padding: 1.5rem 0.75rem !important;
+    }
+
+    .developer-name {
+        font-size: 1.2rem !important;
+    }
+
+    .developer-title {
+        font-size: 0.9rem !important;
+    }
+
+    .social-btn {
+        width: 180px !important;
+        padding: 8px 12px !important;
+    }
+
+    .thank-you-message {
+        padding: 1rem !important;
+    }
+
+    .thank-you-message p {
+        font-size: 0.9rem !important;
+    }
+
+    .copyright-section p {
+        font-size: 0.8rem !important;
+    }
+}
+
+/* تأثير الموجة للأزرار */
+.ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* تحسينات إضافية لقسم المطور */
+.developer-section {
+    position: relative;
+}
+
+.developer-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(74, 144, 226, 0.5),
+        rgba(108, 92, 231, 0.5),
+        rgba(74, 144, 226, 0.5),
+        transparent);
+}
+
+/* تأثيرات إضافية للأزرار الاجتماعية */
+.social-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.social-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent);
+    transition: left 0.5s ease;
+}
+
+.social-btn:hover::after {
+    left: 100%;
+}
+
+/* تحسين أيقونة المطور */
+.developer-icon {
+    animation: code-pulse 2s ease-in-out infinite;
+}
+
+@keyframes code-pulse {
+    0%, 100% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+    50% {
+        transform: scale(1.1);
+        filter: brightness(1.2);
     }
 }
 

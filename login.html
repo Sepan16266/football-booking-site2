@@ -136,6 +136,33 @@
     <!-- خلفية ثابتة أسطورية -->
     <div class="static-bg-effects"></div>
 
+    <!-- شريط التنقل المستقبلي -->
+    <nav class="navbar navbar-expand-lg navbar-futuristic fixed-top">
+        <div class="container">
+            <a class="navbar-brand text-neon-blue text-glow fw-bold" href="index.html">
+                <i class="fas fa-futbol me-2"></i>
+                ⚽ ملاعب المستقبل ⚽
+            </a>
+
+            <!-- زر القائمة للجوال -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon">
+                    <i class="fas fa-bars"></i>
+                </span>
+            </button>
+
+            <!-- القائمة القابلة للطي -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link text-white" href="index.html">
+                        <i class="fas fa-home me-1"></i>
+                        الرئيسية
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
     <!-- خلفية أسطورية لتسجيل الدخول -->
     <div class="login-magical-bg">
         <div class="floating-shapes">
@@ -146,8 +173,8 @@
         </div>
     </div>
 
-    <div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center p-4">
-        <div class="card-magical-login" style="max-width: 500px; width: 100%;">
+    <div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center p-2">
+        <div class="card-magical-login" style="max-width: 500px; width: 100%; margin: 1rem;">
             <!-- تسجيل الدخول -->
             <div id="loginForm" class="fade-in-up">
                 <div class="text-center mb-4">
@@ -165,14 +192,14 @@
                 <div class="mb-4">
                     <div class="position-relative">
                         <i class="fas fa-user position-absolute" style="right: 20px; top: 50%; transform: translateY(-50%); color: var(--neon-blue); z-index: 10;"></i>
-                        <input type="text" class="input-futuristic" id="loginUsername" placeholder="🔑 اسم المستخدم" required style="padding-right: 60px;">
+                        <input type="text" class="input-futuristic" id="loginUsername" placeholder="🔑 اسم المستخدم" required style="padding-right: 60px; font-size: 16px;">
                     </div>
                 </div>
 
                 <div class="mb-4">
                     <div class="position-relative">
                         <i class="fas fa-lock position-absolute" style="right: 20px; top: 50%; transform: translateY(-50%); color: var(--neon-purple); z-index: 10;"></i>
-                        <input type="password" class="input-futuristic" id="loginPassword" placeholder="🔐 كلمة المرور" required style="padding-right: 60px;">
+                        <input type="password" class="input-futuristic" id="loginPassword" placeholder="🔐 كلمة المرور" required style="padding-right: 60px; font-size: 16px;">
                     </div>
                 </div>
 
@@ -187,7 +214,7 @@
                 </button>
             </form>
             
-            <div class="text-center mt-4 slide-in-right">
+            <div class="text-center mt-4 slide-in-right login-links">
                 <div class="glass-effect p-3 hover-glow" style="border-radius: 15px;">
                     <p class="text-white mb-2">ليس لديك حساب؟</p>
                     <a href="#" onclick="showRegisterForm()" class="text-neon-green text-glow fw-bold text-decoration-none">
@@ -214,35 +241,35 @@
                 <div class="mb-3">
                     <div class="position-relative">
                         <i class="fas fa-user position-absolute" style="right: 20px; top: 50%; transform: translateY(-50%); color: var(--neon-blue); z-index: 10;"></i>
-                        <input type="text" class="input-futuristic" id="registerName" placeholder="👤 الاسم الكامل" required style="padding-right: 60px;">
+                        <input type="text" class="input-futuristic" id="registerName" placeholder="👤 الاسم الكامل" required style="padding-right: 60px; font-size: 16px;">
                     </div>
                 </div>
 
                 <div class="mb-3">
                     <div class="position-relative">
                         <i class="fas fa-user-circle position-absolute" style="right: 20px; top: 50%; transform: translateY(-50%); color: var(--neon-purple); z-index: 10;"></i>
-                        <input type="text" class="input-futuristic" id="registerUsername" placeholder="🆔 اسم المستخدم (English)" required pattern="[a-zA-Z0-9_]+" title="أحرف إنجليزية وأرقام فقط" style="padding-right: 60px;">
+                        <input type="text" class="input-futuristic" id="registerUsername" placeholder="🆔 اسم المستخدم (English)" required pattern="[a-zA-Z0-9_]+" title="أحرف إنجليزية وأرقام فقط" style="padding-right: 60px; font-size: 16px;">
                     </div>
                 </div>
 
                 <div class="mb-3">
                     <div class="position-relative">
                         <i class="fas fa-phone position-absolute" style="right: 20px; top: 50%; transform: translateY(-50%); color: var(--neon-green); z-index: 10;"></i>
-                        <input type="tel" class="input-futuristic" id="registerPhone" placeholder="📱 رقم الهاتف" required style="padding-right: 60px;">
+                        <input type="tel" class="input-futuristic" id="registerPhone" placeholder="📱 رقم الهاتف" required style="padding-right: 60px; font-size: 16px;">
                     </div>
                 </div>
 
                 <div class="mb-3">
                     <div class="position-relative">
                         <i class="fas fa-lock position-absolute" style="right: 20px; top: 50%; transform: translateY(-50%); color: var(--neon-yellow); z-index: 10;"></i>
-                        <input type="password" class="input-futuristic" id="registerPassword" placeholder="🔐 كلمة المرور (4+ أحرف)" required minlength="4" style="padding-right: 60px;">
+                        <input type="password" class="input-futuristic" id="registerPassword" placeholder="🔐 كلمة المرور (4+ أحرف)" required minlength="4" style="padding-right: 60px; font-size: 16px;">
                     </div>
                 </div>
 
                 <div class="mb-4">
                     <div class="position-relative">
                         <i class="fas fa-lock position-absolute" style="right: 20px; top: 50%; transform: translateY(-50%); color: var(--neon-pink); z-index: 10;"></i>
-                        <input type="password" class="input-futuristic" id="confirmPassword" placeholder="🔒 تأكيد كلمة المرور" required style="padding-right: 60px;">
+                        <input type="password" class="input-futuristic" id="confirmPassword" placeholder="🔒 تأكيد كلمة المرور" required style="padding-right: 60px; font-size: 16px;">
                     </div>
                 </div>
 
@@ -257,7 +284,7 @@
                 </button>
             </form>
             
-            <div class="text-center mt-4 slide-in-left">
+            <div class="text-center mt-4 slide-in-left login-links">
                 <div class="glass-effect p-3 hover-glow" style="border-radius: 15px;">
                     <p class="text-white mb-2">لديك حساب بالفعل؟</p>
                     <a href="#" onclick="showLoginForm()" class="text-neon-blue text-glow fw-bold text-decoration-none">

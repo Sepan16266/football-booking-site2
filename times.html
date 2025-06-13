@@ -18,18 +18,29 @@
     <div class="static-bg-effects"></div>
 
     <!-- شريط التنقل المستقبلي -->
-    <nav class="navbar navbar-expand-lg navbar-futuristic" id="timesNavbar">
+    <nav class="navbar navbar-expand-lg navbar-futuristic fixed-top" id="timesNavbar">
         <div class="container">
             <a class="navbar-brand text-neon-blue text-glow slide-in-left" href="index.html">
                 <i class="fas fa-futbol me-2 float-animation"></i>
                 <span class="fw-bold">⚽ ملاعب المستقبل</span>
             </a>
-            <div class="navbar-nav ms-auto slide-in-right">
-                <a class="nav-link text-neon-green hover-glow" href="index.html">
-                    <i class="fas fa-home me-1"></i>
-                    🏠 الرئيسية
-                </a>
-                <!-- سيتم إضافة عناصر المصادقة هنا بواسطة JavaScript -->
+
+            <!-- زر القائمة للجوال -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon">
+                    <i class="fas fa-bars"></i>
+                </span>
+            </button>
+
+            <!-- القائمة القابلة للطي -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav ms-auto slide-in-right">
+                    <a class="nav-link text-neon-green hover-glow" href="index.html">
+                        <i class="fas fa-home me-1"></i>
+                        🏠 الرئيسية
+                    </a>
+                    <!-- سيتم إضافة عناصر المصادقة هنا بواسطة JavaScript -->
+                </div>
             </div>
         </div>
     </nav>
