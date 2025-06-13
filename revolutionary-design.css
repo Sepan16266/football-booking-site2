@@ -9,23 +9,23 @@
     --warning-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
     --danger-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
     
-    /* ألوان النيون */
-    --neon-blue: #00d4ff;
-    --neon-purple: #b537f2;
-    --neon-green: #39ff14;
-    --neon-pink: #ff073a;
-    --neon-yellow: #ffff00;
+    /* ألوان هادئة ومتوازنة */
+    --neon-blue: #4a90e2;
+    --neon-purple: #6c5ce7;
+    --neon-green: #00b894;
+    --neon-pink: #fd79a8;
+    --neon-yellow: #fdcb6e;
     
     /* الخلفيات المتحركة */
     --bg-animated: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     --bg-glass: rgba(255, 255, 255, 0.1);
     --bg-dark-glass: rgba(0, 0, 0, 0.2);
     
-    /* الظلال المتقدمة */
-    --shadow-glow: 0 0 20px rgba(102, 126, 234, 0.4);
-    --shadow-neon: 0 0 30px var(--neon-blue);
-    --shadow-deep: 0 20px 40px rgba(0, 0, 0, 0.3);
-    --shadow-float: 0 10px 30px rgba(0, 0, 0, 0.2);
+    /* ظلال خفيفة ومتوازنة */
+    --shadow-glow: 0 2px 10px rgba(102, 126, 234, 0.15);
+    --shadow-neon: 0 4px 15px rgba(74, 144, 226, 0.2);
+    --shadow-deep: 0 8px 25px rgba(0, 0, 0, 0.15);
+    --shadow-float: 0 6px 20px rgba(0, 0, 0, 0.1);
     
     /* الخطوط */
     --font-primary: 'Poppins', 'Cairo', sans-serif;
@@ -55,27 +55,20 @@
 
 body {
     font-family: var(--font-primary);
-    background: var(--bg-animated);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
+    background: linear-gradient(135deg, #2d3436 0%, #636e72 50%, #2d3436 100%);
     color: #fff;
     overflow-x: hidden;
     line-height: 1.6;
 }
 
-/* ===== الخلفية المتحركة ===== */
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
+/* تم إزالة الخلفية المتحركة لتحسين الأداء */
 
 /* ===== تأثيرات الزجاج المتقدمة ===== */
 .glass-effect {
-    background: var(--bg-glass);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
     box-shadow: var(--shadow-glow);
 }
 
@@ -118,7 +111,7 @@ body {
 }
 
 .btn-revolutionary:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
     box-shadow: var(--shadow-float);
 }
 
@@ -148,10 +141,10 @@ body {
 
 /* ===== البطاقات المتطورة ===== */
 .card-revolutionary {
-    background: var(--bg-glass);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
     padding: var(--spacing-lg);
     margin: var(--spacing-md);
     box-shadow: var(--shadow-deep);
@@ -160,56 +153,155 @@ body {
     overflow: hidden;
 }
 
+/* تأثير حدود خفيف بدلاً من الدوران */
 .card-revolutionary::before {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: conic-gradient(from 0deg, transparent, var(--neon-blue), transparent);
-    animation: rotate 4s linear infinite;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(74, 144, 226, 0.1), transparent);
     opacity: 0;
     transition: var(--transition-smooth);
+    pointer-events: none;
 }
 
 .card-revolutionary:hover::before {
-    opacity: 0.1;
+    opacity: 0.3;
 }
 
 .card-revolutionary:hover {
-    transform: translateY(-10px) scale(1.02);
+    transform: translateY(-5px) scale(1.01);
     box-shadow: var(--shadow-neon);
 }
 
-@keyframes rotate {
-    100% { transform: rotate(360deg); }
+/* تم إزالة الحركة الدوارة لتخفيف التصميم */
+
+/* ===== تجاوب الجوال الشامل ===== */
+
+/* الجوالات الصغيرة جداً (320px - 480px) */
+@media (max-width: 480px) {
+    :root {
+        --spacing-xs: 0.25rem;
+        --spacing-sm: 0.5rem;
+        --spacing-md: 0.75rem;
+        --spacing-lg: 1rem;
+        --spacing-xl: 1.5rem;
+    }
+
+    body {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .container {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    /* تصغير العناوين */
+    h1 { font-size: 1.8rem !important; }
+    h2 { font-size: 1.5rem !important; }
+    h3 { font-size: 1.3rem !important; }
+    h4 { font-size: 1.1rem !important; }
+    h5 { font-size: 1rem !important; }
+
+    /* تحسين البطاقات */
+    .card-revolutionary {
+        margin: 0.5rem 0 !important;
+        padding: 1rem !important;
+        border-radius: 10px !important;
+    }
+
+    /* تحسين الأزرار */
+    .btn-revolutionary {
+        padding: 10px 20px !important;
+        font-size: 14px !important;
+        border-radius: 25px !important;
+    }
+
+    /* تحسين النافذة الترحيبية */
+    .hero-section-compact {
+        margin: 10px !important;
+        padding: 15px !important;
+        margin-top: 80px !important;
+    }
+
+    /* تحسين بطاقات الأيام */
+    .day-card-square {
+        min-height: 120px !important;
+        max-height: 140px !important;
+    }
+
+    /* تحسين شريط التنقل */
+    .navbar-futuristic {
+        padding: 0.5rem 0 !important;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem !important;
+    }
+
+    .nav-link {
+        font-size: 0.9rem !important;
+        padding: 0.5rem !important;
+    }
+}
+
+/* الجوالات المتوسطة (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .container {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+
+    .hero-section-compact {
+        margin: 15px !important;
+        margin-top: 90px !important;
+    }
+
+    .day-card-square {
+        min-height: 140px !important;
+        max-height: 160px !important;
+    }
+
+    .card-revolutionary {
+        margin: 0.75rem 0 !important;
+        padding: 1.25rem !important;
+    }
+}
+
+/* الأجهزة اللوحية الصغيرة (769px - 992px) */
+@media (min-width: 769px) and (max-width: 992px) {
+    .hero-section-compact {
+        margin: 20px !important;
+        margin-top: 100px !important;
+    }
 }
 
 /* ===== النصوص المتوهجة ===== */
 .text-glow {
-    text-shadow: 0 0 10px currentColor;
-    animation: pulse 2s ease-in-out infinite alternate;
+    text-shadow: 0 0 5px currentColor;
 }
 
-@keyframes pulse {
-    from { text-shadow: 0 0 10px currentColor; }
-    to { text-shadow: 0 0 20px currentColor, 0 0 30px currentColor; }
+.text-glow-soft {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .text-neon-blue {
     color: var(--neon-blue);
-    text-shadow: 0 0 10px var(--neon-blue);
+    text-shadow: 0 1px 3px rgba(74, 144, 226, 0.3);
 }
 
 .text-neon-purple {
     color: var(--neon-purple);
-    text-shadow: 0 0 10px var(--neon-purple);
+    text-shadow: 0 1px 3px rgba(108, 92, 231, 0.3);
 }
 
 .text-neon-green {
     color: var(--neon-green);
-    text-shadow: 0 0 10px var(--neon-green);
+    text-shadow: 0 1px 3px rgba(0, 184, 148, 0.3);
 }
 
 /* ===== حقول الإدخال المستقبلية ===== */
@@ -231,8 +323,56 @@ body {
 .input-futuristic:focus {
     outline: none;
     border-color: var(--neon-blue);
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    box-shadow: 0 2px 10px rgba(74, 144, 226, 0.2);
     background: rgba(255, 255, 255, 0.15);
+}
+
+/* تجاوب النماذج للجوال */
+@media (max-width: 768px) {
+    .input-futuristic {
+        padding: 12px 15px !important;
+        font-size: 16px !important; /* منع التكبير في iOS */
+        border-radius: 10px !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .form-control {
+        font-size: 16px !important; /* منع التكبير في iOS */
+        padding: 12px 15px !important;
+        border-radius: 10px !important;
+    }
+
+    .form-label {
+        font-size: 14px !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    /* تحسين أزرار النماذج */
+    .btn-revolutionary {
+        width: 100% !important;
+        margin-top: 1rem !important;
+        padding: 12px !important;
+        font-size: 16px !important;
+    }
+
+    /* تحسين النماذج في المودال */
+    .modal-body {
+        padding: 1rem !important;
+    }
+
+    .modal-header {
+        padding: 1rem !important;
+    }
+
+    .modal-footer {
+        padding: 1rem !important;
+        flex-direction: column !important;
+    }
+
+    .modal-footer .btn {
+        width: 100% !important;
+        margin: 0.25rem 0 !important;
+    }
 }
 
 /* ===== شريط التنقل المستقبلي ===== */
@@ -249,17 +389,112 @@ body {
 }
 
 .navbar-futuristic.scrolled {
-    background: var(--bg-dark-glass);
+    background: rgba(0, 0, 0, 0.3);
     box-shadow: var(--shadow-glow);
+}
+
+/* تجاوب شريط التنقل للجوال */
+@media (max-width: 992px) {
+    .navbar-futuristic {
+        padding: 0.5rem 0 !important;
+    }
+
+    .navbar-brand {
+        font-size: 1.3rem !important;
+    }
+
+    .navbar-toggler {
+        border: none !important;
+        padding: 0.25rem 0.5rem !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        border-radius: 8px !important;
+    }
+
+    .navbar-toggler:focus {
+        box-shadow: 0 0 10px rgba(74, 144, 226, 0.3) !important;
+    }
+
+    .navbar-collapse {
+        background: rgba(0, 0, 0, 0.9) !important;
+        margin-top: 1rem !important;
+        border-radius: 10px !important;
+        padding: 1rem !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    .navbar-nav {
+        text-align: center !important;
+    }
+
+    .nav-link {
+        padding: 0.75rem 1rem !important;
+        margin: 0.25rem 0 !important;
+        border-radius: 8px !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .nav-link:hover {
+        background: rgba(74, 144, 226, 0.2) !important;
+        transform: translateX(5px) !important;
+    }
+
+    .dropdown-menu {
+        background: rgba(0, 0, 0, 0.9) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 10px !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    .dropdown-item {
+        color: white !important;
+        padding: 0.75rem 1rem !important;
+        border-radius: 8px !important;
+        margin: 0.25rem !important;
+    }
+
+    .dropdown-item:hover {
+        background: rgba(74, 144, 226, 0.2) !important;
+        color: white !important;
+    }
 }
 
 /* ===== الجداول المتطورة ===== */
 .table-futuristic {
-    background: var(--bg-glass);
-    backdrop-filter: blur(15px);
-    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
     overflow: hidden;
     box-shadow: var(--shadow-deep);
+}
+
+/* تجاوب الجداول للجوال */
+@media (max-width: 768px) {
+    .table-futuristic {
+        font-size: 12px;
+        border-radius: 10px;
+    }
+
+    .table-futuristic th,
+    .table-futuristic td {
+        padding: 0.5rem !important;
+        font-size: 11px !important;
+    }
+
+    .table-futuristic th {
+        font-size: 12px !important;
+    }
+
+    /* إخفاء بعض الأعمدة في الشاشات الصغيرة */
+    .table-futuristic .d-none-mobile {
+        display: none !important;
+    }
+
+    /* جعل الجدول قابل للتمرير أفقي<|im_start|> */
+    .table-responsive {
+        border-radius: 10px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
 }
 
 .table-futuristic th {
@@ -389,8 +624,8 @@ body {
 }
 
 .day-card-square:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 0 40px var(--neon-blue);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 4px 20px rgba(74, 144, 226, 0.3);
 }
 
 /* ===== بطاقات الأوقات المربعة ===== */
@@ -399,6 +634,34 @@ body {
     border: 2px solid #28a745;
     border-radius: 15px;
     transition: var(--transition-lightning);
+}
+
+/* تجاوب بطاقات الأوقات للجوال */
+@media (max-width: 480px) {
+    .time-card-square-available,
+    .time-card-square-booked {
+        border-radius: 10px !important;
+        border-width: 1px !important;
+        margin: 0.25rem !important;
+        padding: 0.75rem !important;
+    }
+
+    .time-card-square-available h5,
+    .time-card-square-booked h5 {
+        font-size: 0.9rem !important;
+        margin-bottom: 0.25rem !important;
+    }
+
+    /* تحسين تأثيرات الهوفر للجوال */
+    .time-card-square-available:hover {
+        transform: scale(1.02) !important;
+        box-shadow: 0 2px 10px rgba(40, 167, 69, 0.3) !important;
+    }
+
+    .time-card-square-booked:hover {
+        transform: scale(1.01) !important;
+        box-shadow: 0 2px 8px rgba(220, 53, 69, 0.2) !important;
+    }
 }
 
 .time-card-square-available:hover {
@@ -487,12 +750,122 @@ body {
     backface-visibility: hidden;
 }
 
+/* ===== تجاوب الشبكة والأعمدة ===== */
+@media (max-width: 576px) {
+    /* جعل جميع الأعمدة بعرض كامل في الجوالات الصغيرة */
+    .col-lg-3,
+    .col-lg-4,
+    .col-lg-6,
+    .col-md-3,
+    .col-md-4,
+    .col-md-6,
+    .col-sm-6 {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        margin-bottom: 1rem !important;
+    }
+
+    /* تحسين الصفوف */
+    .row {
+        margin-left: -5px !important;
+        margin-right: -5px !important;
+    }
+
+    .row > * {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+    /* جوالات متوسطة - عمودين */
+    .col-lg-3,
+    .col-md-3 {
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+    }
+
+    .col-lg-4,
+    .col-md-4 {
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+    }
+
+    .col-lg-6,
+    .col-md-6 {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+/* تحسين المسافات للجوال */
+@media (max-width: 768px) {
+    .mb-4 { margin-bottom: 1.5rem !important; }
+    .mb-5 { margin-bottom: 2rem !important; }
+    .mt-4 { margin-top: 1.5rem !important; }
+    .mt-5 { margin-top: 2rem !important; }
+    .py-5 { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+    .px-4 { padding-left: 1rem !important; padding-right: 1rem !important; }
+}
+
+/* ===== تجاوب النصوص والخطوط ===== */
+@media (max-width: 480px) {
+    /* تحسين أحجام النصوص للجوالات الصغيرة */
+    .display-1 { font-size: 2.5rem !important; }
+    .display-2 { font-size: 2rem !important; }
+    .display-3 { font-size: 1.75rem !important; }
+    .display-4 { font-size: 1.5rem !important; }
+
+    .fs-1 { font-size: 1.5rem !important; }
+    .fs-2 { font-size: 1.25rem !important; }
+    .fs-3 { font-size: 1.1rem !important; }
+    .fs-4 { font-size: 1rem !important; }
+    .fs-5 { font-size: 0.9rem !important; }
+    .fs-6 { font-size: 0.8rem !important; }
+
+    .lead { font-size: 1.1rem !important; }
+    .small { font-size: 0.8rem !important; }
+
+    /* تحسين المسافات بين الأسطر */
+    p, .text-muted, .small {
+        line-height: 1.6 !important;
+        margin-bottom: 1rem !important;
+    }
+
+    /* تحسين النصوص الطويلة */
+    .text-wrap {
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    /* تحسين أحجام النصوص للجوالات المتوسطة */
+    .display-1 { font-size: 3rem !important; }
+    .display-2 { font-size: 2.5rem !important; }
+    .display-3 { font-size: 2rem !important; }
+    .display-4 { font-size: 1.75rem !important; }
+}
+
+/* تحسين النصوص المتوهجة للجوال */
+@media (max-width: 768px) {
+    .text-glow {
+        text-shadow: 0 0 3px currentColor !important;
+    }
+
+    .text-neon-blue,
+    .text-neon-purple,
+    .text-neon-green {
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+    }
+}
+
 /* ===== مؤشر السرعة الخارقة ===== */
 .speed-indicator {
     position: fixed;
     top: 20px;
     right: 20px;
-    background: var(--bg-glass);
+    background: rgba(255, 255, 255, 0.08);
     border: 2px solid var(--neon-blue);
     border-radius: 50px;
     padding: 10px 20px;
@@ -505,12 +878,114 @@ body {
 
 @keyframes pulse-speed {
     0%, 100% {
-        box-shadow: 0 0 20px var(--neon-blue);
+        box-shadow: 0 2px 10px rgba(74, 144, 226, 0.3);
         transform: scale(1);
     }
     50% {
-        box-shadow: 0 0 40px var(--neon-blue);
-        transform: scale(1.05);
+        box-shadow: 0 4px 20px rgba(74, 144, 226, 0.5);
+        transform: scale(1.02);
+    }
+}
+
+/* ===== تحسينات شاملة للجوال ===== */
+@media (max-width: 768px) {
+    /* إخفاء مؤشر السرعة في الجوال */
+    .speed-indicator {
+        display: none !important;
+    }
+
+    /* تحسين صفحة تسجيل الدخول */
+    .login-magical-bg {
+        padding: 1rem !important;
+    }
+
+    .card-magical-login {
+        margin: 1rem !important;
+        padding: 2rem 1.5rem !important;
+        border-radius: 20px !important;
+    }
+
+    .login-title {
+        font-size: 1.8rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .login-icon {
+        font-size: 2.5rem !important;
+    }
+
+    .icon-glow {
+        width: 80px !important;
+        height: 80px !important;
+    }
+
+    /* تحسين صفحة الحجز */
+    .booking-container {
+        padding: 1rem !important;
+        margin: 0.5rem !important;
+    }
+
+    .booking-form {
+        padding: 1rem !important;
+        border-radius: 15px !important;
+    }
+
+    /* تحسين لوحة التحكم */
+    .admin-magical-section {
+        padding: 1rem 0 !important;
+    }
+
+    .admin-card {
+        margin: 0.5rem !important;
+        padding: 1rem !important;
+        border-radius: 15px !important;
+    }
+
+    /* تحسين الإحصائيات */
+    .stats-card {
+        margin-bottom: 1rem !important;
+        text-align: center !important;
+        padding: 1rem !important;
+    }
+
+    .stats-number {
+        font-size: 1.5rem !important;
+    }
+
+    .stats-label {
+        font-size: 0.9rem !important;
+    }
+
+    /* تحسين الأزرار السحرية */
+    .btn-magical {
+        padding: 12px 25px !important;
+        font-size: 14px !important;
+        border-radius: 25px !important;
+        letter-spacing: 1px !important;
+    }
+
+    .btn-magical:hover {
+        transform: translateY(-2px) scale(1.02) !important;
+    }
+
+    /* تحسين النصوص المتوهجة */
+    .text-shimmer {
+        font-size: 1.2rem !important;
+    }
+
+    .text-glow-soft {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important;
+    }
+
+    /* تحسين العنوان الساحر */
+    .hero-title {
+        font-size: 2rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .title-word {
+        margin: 0 0.25rem !important;
+        font-size: 1.8rem !important;
     }
 }
 
@@ -522,6 +997,72 @@ body {
 
 body {
     -webkit-overflow-scrolling: touch;
+}
+
+/* ===== تحسينات التمرير والتفاعل للجوال ===== */
+@media (max-width: 768px) {
+    /* تحسين التمرير */
+    html {
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* تحسين شريط التمرير */
+    ::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: rgba(74, 144, 226, 0.5);
+        border-radius: 2px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(74, 144, 226, 0.7);
+    }
+
+    /* تحسين اللمس والتفاعل */
+    .btn, .card, .nav-link, .time-slot, .day-card {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+
+    /* تحسين الأزرار للمس */
+    .btn {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 12px 20px !important;
+    }
+
+    /* تحسين الروابط للمس */
+    .nav-link {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* تحسين بطاقات الأيام للمس */
+    .day-card-square {
+        min-height: 100px !important;
+        max-height: 120px !important;
+        cursor: pointer;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    /* تحسين بطاقات الأوقات للمس */
+    .time-card-square-available,
+    .time-card-square-booked {
+        min-height: 60px !important;
+        cursor: pointer;
+        -webkit-user-select: none;
+        user-select: none;
+    }
 }
 
 /* ===== تصميم الجمال المطلق ===== */
@@ -975,16 +1516,196 @@ body {
     position: relative;
     min-height: 100vh;
     background:
-        radial-gradient(circle at 30% 20%, rgba(0, 212, 255, 0.12) 0%, transparent 45%),
-        radial-gradient(circle at 70% 30%, rgba(118, 75, 162, 0.12) 0%, transparent 45%),
-        radial-gradient(circle at 20% 80%, rgba(67, 233, 123, 0.08) 0%, transparent 45%),
-        radial-gradient(circle at 80% 80%, rgba(255, 193, 7, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 30% 20%, rgba(74, 144, 226, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 70% 30%, rgba(108, 92, 231, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 20% 80%, rgba(0, 184, 148, 0.06) 0%, transparent 45%),
+        radial-gradient(circle at 80% 80%, rgba(253, 203, 110, 0.06) 0%, transparent 45%),
         linear-gradient(135deg,
             #0a0a0a 0%,
             #1a1a2e 25%,
             #16213e 50%,
             #0f3460 75%,
             #2d1b69 100%);
+}
+
+/* تجاوب صفحة الأوقات للجوال */
+@media (max-width: 768px) {
+    .times-magical-section {
+        min-height: auto !important;
+        padding: 1rem 0 !important;
+    }
+
+    .times-bg-overlay {
+        opacity: 0.7 !important;
+    }
+
+    /* تحسين عرض الأوقات */
+    .time-slots-container {
+        padding: 0.5rem !important;
+    }
+
+    .time-slot {
+        margin: 0.25rem !important;
+        padding: 0.75rem !important;
+        font-size: 0.9rem !important;
+        border-radius: 8px !important;
+        min-height: 50px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* تحسين عنوان الصفحة */
+    .times-title {
+        font-size: 1.5rem !important;
+        margin-bottom: 1rem !important;
+        text-align: center !important;
+    }
+
+    /* تحسين شبكة الأوقات */
+    .times-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)) !important;
+        gap: 0.5rem !important;
+    }
+}
+
+/* ===== تحسينات خاصة للجوالات الصغيرة جداً (أقل من 400px) ===== */
+@media (max-width: 400px) {
+    .container {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+
+    .hero-section-compact {
+        margin: 5px !important;
+        padding: 10px !important;
+        margin-top: 70px !important;
+    }
+
+    .day-card-square {
+        min-height: 90px !important;
+        max-height: 110px !important;
+    }
+
+    .time-card-square-available,
+    .time-card-square-booked {
+        min-height: 50px !important;
+        padding: 0.5rem !important;
+        font-size: 0.8rem !important;
+    }
+
+    .btn-revolutionary {
+        padding: 8px 15px !important;
+        font-size: 12px !important;
+    }
+
+    .card-revolutionary {
+        padding: 0.75rem !important;
+        margin: 0.25rem 0 !important;
+    }
+
+    .navbar-brand {
+        font-size: 1rem !important;
+    }
+
+    .nav-link {
+        font-size: 0.8rem !important;
+        padding: 0.4rem !important;
+    }
+
+    h1 { font-size: 1.5rem !important; }
+    h2 { font-size: 1.3rem !important; }
+    h3 { font-size: 1.1rem !important; }
+    h4 { font-size: 1rem !important; }
+    h5 { font-size: 0.9rem !important; }
+
+    .fs-1 { font-size: 1.3rem !important; }
+    .fs-2 { font-size: 1.1rem !important; }
+    .fs-3 { font-size: 1rem !important; }
+    .fs-4 { font-size: 0.9rem !important; }
+    .fs-5 { font-size: 0.8rem !important; }
+    .fs-6 { font-size: 0.7rem !important; }
+}
+
+/* ===== تحسينات للوضع الأفقي في الجوال ===== */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero-section-compact {
+        margin-top: 60px !important;
+        padding: 10px !important;
+    }
+
+    .navbar-futuristic {
+        padding: 0.25rem 0 !important;
+    }
+
+    .day-card-square {
+        min-height: 80px !important;
+        max-height: 100px !important;
+    }
+
+    .card-revolutionary {
+        padding: 1rem !important;
+        margin: 0.5rem 0 !important;
+    }
+}
+
+/* ===== تحسينات الأداء للجوال ===== */
+@media (max-width: 768px) {
+    /* تقليل التأثيرات للحفاظ على الأداء */
+    .card-revolutionary::before,
+    .btn-magical::before,
+    .floating-orb,
+    .beauty-waves {
+        display: none !important;
+    }
+
+    /* تبسيط الظلال */
+    .card-revolutionary {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .btn-revolutionary {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    /* تقليل الحركات */
+    .card-revolutionary:hover {
+        transform: translateY(-2px) !important;
+    }
+
+    .btn-revolutionary:hover {
+        transform: translateY(-1px) !important;
+    }
+
+    /* تحسين الخطوط */
+    * {
+        -webkit-font-smoothing: antialiased !important;
+        -moz-osx-font-smoothing: grayscale !important;
+    }
+}
+
+    .times-bg-overlay {
+        opacity: 0.7 !important;
+    }
+
+    /* تحسين عرض الأوقات */
+    .time-slots-container {
+        padding: 0.5rem !important;
+    }
+
+    .time-slot {
+        margin: 0.25rem !important;
+        padding: 0.75rem !important;
+        font-size: 0.9rem !important;
+        border-radius: 8px !important;
+    }
+
+    /* تحسين عنوان الصفحة */
+    .times-title {
+        font-size: 1.5rem !important;
+        margin-bottom: 1rem !important;
+        text-align: center !important;
+    }
 }
 
 .times-bg-overlay {
