@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب المشرف</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a2e;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #16213e;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #0f3460;
+        }
+        button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .success {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .error {
+            color: #f44336;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 إنشاء حساب المشرف</h1>
+        <p>اضغط الزر أدناه لإنشاء حساب المشرف الافتراضي</p>
+        
+        <button onclick="createAdminAccount()">
+            🚀 إنشاء حساب المشرف
+        </button>
+        
+        <div id="result"></div>
+        
+        <hr style="margin: 30px 0; border-color: #0f3460;">
+        
+        <h3>📋 بيانات الحساب الافتراضي:</h3>
+        <p><strong>اسم المستخدم:</strong> admin</p>
+        <p><strong>كلمة المرور:</strong> admin123</p>
+        <p><strong>النوع:</strong> مشرف</p>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Firebase Config -->
+    <script src="firebase-config-vercel.js"></script>
+
+    <script>
+        async function createAdminAccount() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>⏳ جاري إنشاء الحساب...</p>';
+            
+            try {
+                // التحقق من وجود الحساب مسبقاً
+                const existingAdmin = await db.collection('users')
+                    .where('username', '==', 'admin')
+                    .get();
+                
+                if (!existingAdmin.empty) {
+                    resultDiv.innerHTML = '<p class="error">❌ حساب المشرف موجود بالفعل!</p>';
+                    return;
+                }
+                
+                // إنشاء حساب المشرف
+                const adminData = {
+                    fullName: 'المشرف العام',
+                    username: 'admin',
+                    phone: '1234567890',
+                    password: 'admin123',
+                    role: 'admin',
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    isActive: true
+                };
+                
+                await db.collection('users').add(adminData);
+                
+                resultDiv.innerHTML = `
+                    <p class="success">✅ تم إنشاء حساب المشرف بنجاح!</p>
+                    <p>يمكنك الآن تسجيل الدخول باستخدام:</p>
+                    <p><strong>اسم المستخدم:</strong> admin</p>
+                    <p><strong>كلمة المرور:</strong> admin123</p>
+                    <br>
+                    <a href="login.html" style="color: #4CAF50; text-decoration: none;">
+                        🚀 اذهب لتسجيل الدخول
+                    </a>
+                `;
+                
+            } catch (error) {
+                console.error('خطأ في إنشاء الحساب:', error);
+                resultDiv.innerHTML = `<p class="error">❌ خطأ: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
