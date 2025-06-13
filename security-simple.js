@@ -6,7 +6,7 @@ class SimpleSecurityManager {
     constructor() {
         this.maxLoginAttempts = 5;
         this.lockoutDuration = 15 * 60 * 1000; // 15 دقيقة
-        this.sessionTimeout = 30 * 60 * 1000; // 30 دقيقة
+        this.sessionTimeout = 24 * 60 * 60 * 1000; // 24 ساعة
         this.suspiciousActivities = [];
         
         console.log('🛡️ تم تفعيل نظام الحماية المبسط');
@@ -200,7 +200,16 @@ class SimpleSecurityManager {
         if (this.sessionTimer) {
             clearTimeout(this.sessionTimer);
         }
-        
+
+        // التحقق من إعدادات الجلسة
+        const sessionEnabled = localStorage.getItem('session_timeout_enabled');
+        if (sessionEnabled === 'false') {
+            console.log('🔓 انتهاء صلاحية الجلسة معطل');
+            return;
+        }
+
+        console.log(`🕒 بدء مؤقت الجلسة: ${this.sessionTimeout / (60 * 60 * 1000)} ساعة`);
+
         this.sessionTimer = setTimeout(() => {
             this.expireSession();
         }, this.sessionTimeout);
@@ -208,16 +217,29 @@ class SimpleSecurityManager {
     
     // ⏰ انتهاء صلاحية الجلسة
     expireSession() {
-        console.log('🕒 انتهت صلاحية الجلسة');
-        
+        console.log('🕒 انتهت صلاحية الجلسة (بعد 24 ساعة)');
+
+        // التحقق من وجود المستخدم قبل المسح
+        const currentUser = localStorage.getItem('ma3ab_current_user');
+        if (!currentUser) {
+            console.log('لا يوجد مستخدم لإنهاء جلسته');
+            return;
+        }
+
         // مسح بيانات المستخدم
         localStorage.removeItem('ma3ab_current_user');
-        
-        // إظهار رسالة
-        alert('انتهت صلاحية جلستك. يرجى تسجيل الدخول مرة أخرى.');
-        
-        // إعادة توجيه لصفحة تسجيل الدخول
-        window.location.href = 'welcome.html';
+
+        // عرض رسالة تنبيه مهذبة
+        if (typeof showToast === 'function') {
+            showToast('انتهت صلاحية الجلسة. يرجى تسجيل الدخول مرة أخرى.', 'warning');
+        } else {
+            alert('انتهت صلاحية الجلسة. سيتم إعادة توجيهك لصفحة تسجيل الدخول.');
+        }
+
+        // تأخير قبل إعادة التوجيه
+        setTimeout(() => {
+            window.location.href = 'login.html';
+        }, 2000);
     }
     
     // 🔄 تجديد الجلسة

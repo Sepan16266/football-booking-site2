@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار WhatsApp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a2e;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #16213e;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #0f3460;
+        }
+        button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .success {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .error {
+            color: #f44336;
+            font-weight: bold;
+        }
+        .info {
+            color: #2196F3;
+            font-weight: bold;
+        }
+        .log {
+            background: #0a0a0a;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: left;
+            margin: 20px 0;
+            font-family: monospace;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #0f3460;
+            background: #0a0a0a;
+            color: white;
+            margin: 5px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 اختبار إرسال رسائل WhatsApp</h1>
+        
+        <div style="margin: 20px 0;">
+            <h3>📋 الإعدادات الحالية:</h3>
+            <p><strong>رقم الهاتف:</strong> <span id="currentPhone">9647508275402</span></p>
+            <p><strong>API Key:</strong> <span id="currentApiKey">1002501</span></p>
+        </div>
+        
+        <div style="margin: 20px 0;">
+            <h3>🔧 اختبار مخصص:</h3>
+            <input type="text" id="testPhone" placeholder="رقم الهاتف" value="9647508275402">
+            <input type="text" id="testApiKey" placeholder="API Key" value="1002501">
+            <br>
+            <textarea id="testMessage" placeholder="نص الرسالة" style="width: 400px; height: 100px; margin: 10px;">🧪 رسالة اختبار من موقع الملاعب!</textarea>
+        </div>
+        
+        <button onclick="testWhatsApp()">
+            📱 اختبار إرسال رسالة
+        </button>
+        
+        <button onclick="testWithDifferentFormat()">
+            🔄 اختبار بتنسيق مختلف
+        </button>
+        
+        <button onclick="checkCallMeBotStatus()">
+            🔍 فحص حالة CallMeBot
+        </button>
+        
+        <div id="result"></div>
+        
+        <div class="log" id="logContainer">
+            <strong>📋 سجل الأحداث:</strong><br>
+            <div id="log"></div>
+        </div>
+        
+        <hr style="margin: 30px 0; border-color: #0f3460;">
+        
+        <div style="text-align: left;">
+            <h3>📖 خطوات إعداد CallMeBot:</h3>
+            <ol>
+                <li>أضف رقم CallMeBot إلى جهات الاتصال: <strong>+34 644 59 71 67</strong></li>
+                <li>أرسل رسالة WhatsApp: <strong>I allow callmebot to send me messages</strong></li>
+                <li>ستحصل على API Key</li>
+                <li>استخدم الرقم والـ API Key في الموقع</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        function log(message) {
+            const logDiv = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            logDiv.innerHTML += `<div>[${timestamp}] ${message}</div>`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        async function testWhatsApp() {
+            const resultDiv = document.getElementById('result');
+            const phone = document.getElementById('testPhone').value;
+            const apiKey = document.getElementById('testApiKey').value;
+            const message = document.getElementById('testMessage').value;
+            
+            log('🚀 بدء اختبار إرسال رسالة WhatsApp...');
+            log(`📱 الرقم: ${phone}`);
+            log(`🔑 API Key: ${apiKey}`);
+            
+            resultDiv.innerHTML = '<p class="info">⏳ جاري إرسال الرسالة...</p>';
+            
+            try {
+                const encodedMessage = encodeURIComponent(message);
+                const url = `https://api.callmebot.com/whatsapp.php?phone=${phone}&text=${encodedMessage}&apikey=${apiKey}`;
+                
+                log(`🌐 الرابط: ${url}`);
+                
+                const response = await fetch(url, {
+                    method: 'GET',
+                    mode: 'no-cors' // تجاوز CORS
+                });
+                
+                log(`📡 استجابة الخادم: ${response.status || 'no-cors mode'}`);
+                
+                // في no-cors mode لا يمكن قراءة الاستجابة
+                resultDiv.innerHTML = `
+                    <p class="success">✅ تم إرسال الطلب!</p>
+                    <p class="info">تحقق من WhatsApp لرؤية الرسالة</p>
+                    <p><small>ملاحظة: بسبب CORS، لا يمكن التأكد من نجاح الإرسال</small></p>
+                `;
+                
+                log('✅ تم إرسال الطلب بنجاح');
+                
+            } catch (error) {
+                log(`❌ خطأ: ${error.message}`);
+                resultDiv.innerHTML = `<p class="error">❌ خطأ: ${error.message}</p>`;
+            }
+        }
+
+        async function testWithDifferentFormat() {
+            const phone = document.getElementById('testPhone').value;
+            const apiKey = document.getElementById('testApiKey').value;
+            
+            log('🔄 اختبار بتنسيقات مختلفة للرقم...');
+            
+            const formats = [
+                phone, // الرقم كما هو
+                phone.replace(/^00/, ''), // إزالة 00
+                phone.replace(/^\+/, ''), // إزالة +
+                phone.replace(/\s/g, ''), // إزالة المسافات
+                phone.replace(/\D/g, '') // الأرقام فقط
+            ];
+            
+            for (let i = 0; i < formats.length; i++) {
+                const formattedPhone = formats[i];
+                log(`📱 تجربة التنسيق ${i + 1}: ${formattedPhone}`);
+                
+                try {
+                    const message = `🧪 اختبار التنسيق ${i + 1}`;
+                    const encodedMessage = encodeURIComponent(message);
+                    const url = `https://api.callmebot.com/whatsapp.php?phone=${formattedPhone}&text=${encodedMessage}&apikey=${apiKey}`;
+                    
+                    await fetch(url, { method: 'GET', mode: 'no-cors' });
+                    log(`✅ تم إرسال الطلب للتنسيق ${i + 1}`);
+                    
+                    // انتظار ثانية بين كل طلب
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    
+                } catch (error) {
+                    log(`❌ فشل التنسيق ${i + 1}: ${error.message}`);
+                }
+            }
+            
+            document.getElementById('result').innerHTML = `
+                <p class="info">🔄 تم اختبار جميع التنسيقات</p>
+                <p>تحقق من WhatsApp لرؤية أي رسائل وصلت</p>
+            `;
+        }
+
+        async function checkCallMeBotStatus() {
+            log('🔍 فحص حالة خدمة CallMeBot...');
+            
+            try {
+                const response = await fetch('https://api.callmebot.com/', {
+                    method: 'GET',
+                    mode: 'no-cors'
+                });
+                
+                log('✅ خدمة CallMeBot متاحة');
+                document.getElementById('result').innerHTML = `
+                    <p class="success">✅ خدمة CallMeBot متاحة</p>
+                `;
+                
+            } catch (error) {
+                log(`❌ مشكلة في الوصول لـ CallMeBot: ${error.message}`);
+                document.getElementById('result').innerHTML = `
+                    <p class="error">❌ مشكلة في الوصول لـ CallMeBot</p>
+                `;
+            }
+        }
+
+        // تسجيل الإعدادات عند تحميل الصفحة
+        window.addEventListener('load', function() {
+            log('🔧 تم تحميل صفحة اختبار WhatsApp');
+            log('📋 الإعدادات الحالية محملة');
+        });
+    </script>
+</body>
+</html>

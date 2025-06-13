@@ -193,74 +193,8 @@
             setTimeout(() => {
                 document.body.style.opacity = '1';
             }, 50);
-            // فحص فوري للمصادقة
-            const savedUser = localStorage.getItem('ma3ab_current_user');
-            if (!savedUser) {
-                console.log('الصفحة الرئيسية: المستخدم غير مسجل دخول، إعادة توجيه لصفحة الترحيب');
-                window.location.href = 'welcome.html';
-                return;
-            }
-
-            // إذا كان المستخدم مسجل دخول، تحديث شريط التنقل
-            setTimeout(function() {
-                console.log('تحديث شريط التنقل في الصفحة الرئيسية');
-
-                const navbar = document.querySelector('.navbar-nav');
-
-                if (navbar) {
-                    // إزالة العناصر القديمة
-                    const oldItems = navbar.querySelectorAll('.auth-item');
-                    oldItems.forEach(item => item.remove());
-
-                    try {
-                        const user = JSON.parse(savedUser);
-                        console.log('المستخدم مسجل دخول:', user.fullName);
-
-                        // إضافة معلومات المستخدم
-                        const userInfo = document.createElement('li');
-                        userInfo.className = 'nav-item auth-item';
-                        userInfo.innerHTML = `
-                            <span class="nav-link text-white">
-                                <i class="fas fa-user me-1"></i>
-                                ${user.fullName}
-                            </span>
-                        `;
-                        navbar.appendChild(userInfo);
-
-                        // إضافة لوحة التحكم للمشرفين
-                        if (user.role === 'admin') {
-                            const adminItem = document.createElement('li');
-                            adminItem.className = 'nav-item auth-item';
-                            adminItem.innerHTML = `
-                                <a class="nav-link" href="admin.html">
-                                    <i class="fas fa-cog me-1"></i>
-                                    لوحة التحكم
-                                </a>
-                            `;
-                            navbar.appendChild(adminItem);
-                        }
-
-                        // إضافة تسجيل الخروج
-                        const logoutItem = document.createElement('li');
-                        logoutItem.className = 'nav-item auth-item';
-                        logoutItem.innerHTML = `
-                            <a class="nav-link" href="#" onclick="handleLogout()">
-                                <i class="fas fa-sign-out-alt me-1"></i>
-                                تسجيل الخروج
-                            </a>
-                        `;
-                        navbar.appendChild(logoutItem);
-
-                    } catch (error) {
-                        console.error('خطأ في قراءة بيانات المستخدم:', error);
-                        // إذا كانت البيانات تالفة، إعادة توجيه لتسجيل الدخول
-                        localStorage.removeItem('ma3ab_current_user');
-                        window.location.href = 'login.html';
-                    }
-                } else {
-                    console.error('لم يتم العثور على شريط التنقل');
-                }
-            }, 500);
+            // السماح لـ auth.js بالتعامل مع المصادقة
+            console.log('الصفحة الرئيسية: السماح لنظام المصادقة بالتحكم');
         });
     </script>
 </body>

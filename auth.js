@@ -44,13 +44,19 @@ function loadCurrentUser() {
         // 🕒 فحص انتهاء صلاحية الجلسة
         if (typeof securityManager !== 'undefined' && currentUser.loginTime) {
             const sessionAge = Date.now() - currentUser.loginTime;
+            const sessionHours = sessionAge / (60 * 60 * 1000);
+
+            console.log(`🕒 عمر الجلسة: ${sessionHours.toFixed(2)} ساعة`);
+            console.log(`🕒 الحد الأقصى: ${securityManager.sessionTimeout / (60 * 60 * 1000)} ساعة`);
+
             if (sessionAge > securityManager.sessionTimeout) {
-                console.log('🕒 انتهت صلاحية الجلسة');
+                console.log('🕒 انتهت صلاحية الجلسة - تسجيل خروج تلقائي');
                 clearCurrentUser();
                 return;
             }
 
             // 🔄 تجديد مؤقت الجلسة
+            console.log('🔄 تجديد مؤقت الجلسة');
             securityManager.startSessionTimer();
         }
 
@@ -60,20 +66,20 @@ function loadCurrentUser() {
     }
 }
 
-// حفظ المستخدم في localStorage مع التشفير
+// حفظ المستخدم في localStorage
 function saveCurrentUser(user) {
     currentUser = user;
 
     // إضافة وقت تسجيل الدخول
     user.loginTime = Date.now();
 
-    // حفظ مشفر إذا كان securityManager متاح
+    // حفظ بـ JSON عادي (لتجنب مشاكل التشفير)
+    console.log('💾 حفظ بيانات المستخدم:', user.username);
+    localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
+
+    // بدء مؤقت الجلسة إذا كان متاح
     if (typeof securityManager !== 'undefined') {
-        const encryptedUser = securityManager.encryptData(user);
-        localStorage.setItem(USER_STORAGE_KEY, encryptedUser);
         securityManager.startSessionTimer();
-    } else {
-        localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
     }
 
     updateUIBasedOnAuth(user);
@@ -89,23 +95,45 @@ function clearCurrentUser() {
 // دالة مساعدة لقراءة بيانات المستخدم بشكل آمن
 function getCurrentUserData() {
     const savedUser = localStorage.getItem(USER_STORAGE_KEY);
+    console.log('🔍 قراءة بيانات المستخدم من localStorage...');
+
     if (!savedUser) {
+        console.log('❌ لا توجد بيانات محفوظة في localStorage');
         return null;
     }
 
+    console.log('📦 تم العثور على بيانات محفوظة');
+
     try {
-        // محاولة فك التشفير أولاً
-        if (typeof securityManager !== 'undefined' && securityManager.decryptData) {
-            const decryptedUser = securityManager.decryptData(savedUser);
-            if (decryptedUser) {
-                return decryptedUser;
+        // محاولة JSON العادي أولاً (للحسابات الجديدة)
+        try {
+            const parsedUser = JSON.parse(savedUser);
+            if (parsedUser && parsedUser.username) {
+                console.log('✅ تم قراءة البيانات بـ JSON عادي:', parsedUser.username);
+                return parsedUser;
             }
+        } catch (jsonError) {
+            console.log('⚠️ فشل JSON عادي، محاولة فك التشفير...');
         }
 
-        // إذا فشل فك التشفير، جرب JSON العادي
-        return JSON.parse(savedUser);
+        // محاولة فك التشفير للحسابات القديمة
+        if (typeof securityManager !== 'undefined' && securityManager.decryptData) {
+            console.log('🔐 محاولة فك التشفير...');
+            const decryptedUser = securityManager.decryptData(savedUser);
+            if (decryptedUser && decryptedUser.username) {
+                console.log('✅ تم فك التشفير بنجاح:', decryptedUser.username);
+                return decryptedUser;
+            }
+            console.log('⚠️ فشل فك التشفير');
+        }
+
+        console.error('❌ فشل في قراءة البيانات بجميع الطرق');
+        return null;
+
     } catch (error) {
-        console.error('خطأ في قراءة بيانات المستخدم:', error);
+        console.error('❌ خطأ عام في قراءة بيانات المستخدم:', error);
+        console.log('🗑️ سيتم مسح البيانات التالفة');
+        localStorage.removeItem(USER_STORAGE_KEY);
         return null;
     }
 }
@@ -216,15 +244,13 @@ async function handleLogin(event) {
             loginTime: Date.now()
         };
 
-        // 🔐 حفظ البيانات (مشفرة إذا كان securityManager متاح)
+        // 🔐 حفظ البيانات بـ JSON عادي (لتجنب مشاكل التشفير)
+        console.log('💾 حفظ بيانات تسجيل الدخول...');
+        localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
+
+        // 🕒 بدء مؤقت الجلسة إذا كان متاح
         if (typeof securityManager !== 'undefined') {
-            const encryptedUser = securityManager.encryptData(user);
-            localStorage.setItem(USER_STORAGE_KEY, encryptedUser);
-            // 🕒 بدء مؤقت الجلسة
             securityManager.startSessionTimer();
-        } else {
-            // حفظ عادي إذا لم يكن التشفير متاح
-            localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
         }
 
         currentUser = user;
@@ -335,13 +361,16 @@ async function handleRegister(event) {
             loginTime: Date.now()
         };
 
-        // حفظ البيانات (مشفرة إذا كان securityManager متاح)
+        // حفظ البيانات بـ JSON عادي للحسابات الجديدة (لتجنب مشاكل التشفير)
+        console.log('💾 حفظ بيانات المستخدم الجديد...');
+        localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
+
+        // تعطيل انتهاء الجلسة للحسابات الجديدة
+        localStorage.setItem('session_timeout_enabled', 'true');
+
+        // بدء مؤقت الجلسة إذا كان متاح
         if (typeof securityManager !== 'undefined') {
-            const encryptedUser = securityManager.encryptData(user);
-            localStorage.setItem(USER_STORAGE_KEY, encryptedUser);
             securityManager.startSessionTimer();
-        } else {
-            localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
         }
 
         currentUser = user;
@@ -364,16 +393,21 @@ async function handleRegister(event) {
 function checkAuthState() {
     const currentPage = window.location.pathname.split('/').pop();
 
-    // تحميل المستخدم من localStorage أولاً
-    const savedUser = localStorage.getItem(USER_STORAGE_KEY);
-    if (savedUser) {
-        try {
-            currentUser = JSON.parse(savedUser);
-        } catch (error) {
-            console.error('خطأ في قراءة بيانات المستخدم:', error);
-            localStorage.removeItem(USER_STORAGE_KEY);
-            currentUser = null;
+    // تحميل المستخدم من localStorage باستخدام الدالة الآمنة
+    console.log('🔍 بدء فحص حالة المصادقة...');
+    currentUser = getCurrentUserData();
+
+    if (!currentUser) {
+        console.log('❌ لا يوجد مستخدم محفوظ أو فشل في قراءة البيانات');
+        console.log('🔍 فحص localStorage مباشرة...');
+        const rawData = localStorage.getItem(USER_STORAGE_KEY);
+        if (rawData) {
+            console.log('📦 يوجد بيانات خام في localStorage:', rawData.substring(0, 50) + '...');
+        } else {
+            console.log('❌ لا توجد بيانات في localStorage');
         }
+    } else {
+        console.log('✅ تم تحميل المستخدم بنجاح:', currentUser.username, 'النوع:', currentUser.role);
     }
 
     // قائمة الصفحات المحمية (جميع الصفحات عدا تسجيل الدخول)
@@ -384,12 +418,21 @@ function checkAuthState() {
 
     // إذا كان المستخدم في صفحة محمية وغير مسجل دخول
     if (protectedPages.includes(currentPageName) && !currentUser) {
-        console.log('الصفحة محمية والمستخدم غير مسجل دخول، إعادة توجيه لتسجيل الدخول');
+        console.log('❌ الصفحة محمية والمستخدم غير مسجل دخول');
+        console.log('📄 الصفحة:', currentPageName);
+        console.log('👤 المستخدم:', currentUser);
+        console.log('🔄 إعادة توجيه لتسجيل الدخول...');
+
         showAuthToast('يجب تسجيل الدخول للوصول للموقع', 'warning');
         setTimeout(() => {
             window.location.href = 'login.html';
         }, 1500);
         return;
+    } else if (currentUser) {
+        console.log('✅ المستخدم مسجل دخول بنجاح');
+        console.log('👤 الاسم:', currentUser.fullName);
+        console.log('🔑 النوع:', currentUser.role);
+        console.log('📄 الصفحة:', currentPageName);
     }
 
     // إذا كان المستخدم في صفحة الإدارة

@@ -289,18 +289,46 @@ async function handleBookingSubmit(event) {
         showToast('تم تأكيد حجزك بنجاح! شكراً لك.', 'success');
 
         // إرسال رسالة WhatsApp (في الخلفية)
+        console.log('🚀 بدء إرسال رسائل WhatsApp...');
+        console.log('📋 بيانات الحجز للإرسال:', formData);
+
         try {
-            // إرسال رسالة للمدير
-            const adminMessageSent = await sendWhatsAppMessage(formData);
+            // التأكد من وجود دالة الإرسال
+            if (typeof sendWhatsAppMessage === 'function') {
+                console.log('✅ دالة sendWhatsAppMessage موجودة');
 
-            // إرسال رسالة للعميل (اختياري)
-            const customerMessageSent = await sendCustomerWhatsApp(formData.phoneNumber, formData);
+                // إرسال رسالة للمدير
+                console.log('📱 إرسال رسالة للمدير...');
+                const adminMessageSent = await sendWhatsAppMessage(formData);
+                console.log('📱 نتيجة إرسال رسالة المدير:', adminMessageSent);
 
-            if (adminMessageSent || customerMessageSent) {
-                console.log('✅ تم إرسال رسائل WhatsApp');
+                // إرسال رسالة للعميل (اختياري)
+                if (typeof sendCustomerWhatsApp === 'function') {
+                    console.log('📱 إرسال رسالة للعميل...');
+                    const customerMessageSent = await sendCustomerWhatsApp(formData.phoneNumber, formData);
+                    console.log('📱 نتيجة إرسال رسالة العميل:', customerMessageSent);
+
+                    if (adminMessageSent || customerMessageSent) {
+                        console.log('✅ تم إرسال رسائل WhatsApp بنجاح');
+                        showToast('تم إرسال رسائل التأكيد عبر WhatsApp', 'success');
+                    } else {
+                        console.log('⚠️ فشل في إرسال رسائل WhatsApp');
+                        showToast('تم الحجز لكن فشل إرسال رسائل WhatsApp', 'warning');
+                    }
+                } else {
+                    console.log('⚠️ دالة sendCustomerWhatsApp غير موجودة');
+                    if (adminMessageSent) {
+                        console.log('✅ تم إرسال رسالة المدير فقط');
+                        showToast('تم إرسال رسالة التأكيد للمدير', 'success');
+                    }
+                }
+            } else {
+                console.error('❌ دالة sendWhatsAppMessage غير موجودة');
+                showToast('خطأ: دالة إرسال WhatsApp غير متاحة', 'error');
             }
         } catch (error) {
             console.error('⚠️ خطأ في إرسال رسائل WhatsApp:', error);
+            showToast('خطأ في إرسال رسائل WhatsApp: ' + error.message, 'warning');
             // لا نوقف العملية حتى لو فشل إرسال الرسالة
         }
 

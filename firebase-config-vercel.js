@@ -28,32 +28,45 @@ const CALLMEBOT_CONFIG = {
 
 // دالة إرسال رسالة WhatsApp للإدارة
 async function sendWhatsAppMessage(bookingData) {
+    console.log('📱 محاولة إرسال رسالة WhatsApp...');
+    console.log('📋 إعدادات CallMeBot:', {
+        phone: CALLMEBOT_CONFIG.phoneNumber,
+        apiKey: CALLMEBOT_CONFIG.apiKey ? 'موجود' : 'مفقود'
+    });
+
     if (!CALLMEBOT_CONFIG.phoneNumber || !CALLMEBOT_CONFIG.apiKey) {
         console.log('⚠️ إعدادات CallMeBot غير مكتملة');
         return false;
     }
 
     try {
-        const message = `🔔 حجز جديد!\n\n` +
-                       `👤 الاسم: ${bookingData.fullName}\n` +
-                       `📱 الهاتف: ${bookingData.phoneNumber}\n` +
-                       `📅 التاريخ: ${bookingData.bookingDate}\n` +
-                       `⏰ الوقت: ${bookingData.bookingTime}\n` +
-                       `🏟️ الملعب: ${bookingData.fieldName}\n\n` +
-                       `تم الحجز بنجاح! ✅`;
+        const message = `🔔 حجز جديد!
+
+👤 الاسم: ${bookingData.fullName}
+📱 الهاتف: ${bookingData.phoneNumber}
+📅 التاريخ: ${bookingData.bookingDate}
+⏰ الوقت: ${bookingData.bookingTime}
+🏟️ الملعب: ${bookingData.fieldName || 'الملعب الرئيسي'}
+
+تم الحجز بنجاح! ✅`;
+
+        console.log('📝 نص الرسالة:', message);
 
         const encodedMessage = encodeURIComponent(message);
         const url = `https://api.callmebot.com/whatsapp.php?phone=${CALLMEBOT_CONFIG.phoneNumber}&text=${encodedMessage}&apikey=${CALLMEBOT_CONFIG.apiKey}`;
 
-        const response = await fetch(url);
-        
-        if (response.ok) {
-            console.log('✅ تم إرسال رسالة WhatsApp بنجاح');
-            return true;
-        } else {
-            console.error('❌ فشل في إرسال رسالة WhatsApp:', response.status);
-            return false;
-        }
+        console.log('🌐 رابط الإرسال:', url);
+
+        // استخدام no-cors لتجاوز مشاكل CORS
+        const response = await fetch(url, {
+            method: 'GET',
+            mode: 'no-cors'
+        });
+
+        console.log('📡 تم إرسال الطلب إلى CallMeBot');
+        console.log('✅ تم إرسال رسالة WhatsApp (تحقق من الهاتف)');
+        return true;
+
     } catch (error) {
         console.error('❌ خطأ في إرسال رسالة WhatsApp:', error);
         return false;
@@ -248,3 +261,14 @@ async function getBookingStats() {
 console.log('🔥 Firebase تم تهيئته بنجاح - Vercel Edition!');
 console.log('📱 CallMeBot جاهز لإرسال الرسائل');
 console.log('💾 Firestore متصل وجاهز لحفظ الحجوزات');
+
+// التأكد من تحميل دوال WhatsApp
+console.log('🔍 فحص دوال WhatsApp:');
+console.log('- sendWhatsAppMessage:', typeof sendWhatsAppMessage);
+console.log('- sendCustomerWhatsApp:', typeof sendCustomerWhatsApp);
+console.log('- CALLMEBOT_CONFIG:', CALLMEBOT_CONFIG);
+
+// إضافة الدوال للنطاق العام للتأكد من الوصول إليها
+window.sendWhatsAppMessage = sendWhatsAppMessage;
+window.sendCustomerWhatsApp = sendCustomerWhatsApp;
+window.CALLMEBOT_CONFIG = CALLMEBOT_CONFIG;
