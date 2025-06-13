@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حجز الملاعب الخماسية</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <link href="revolutionary-design.css" rel="stylesheet">
+</head>
+<body>
+    <!-- خلفية ثابتة أسطورية -->
+    <div class="static-bg-effects"></div>
+
+    <!-- شريط التنقل المستقبلي -->
+    <nav class="navbar navbar-expand-lg navbar-futuristic" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand text-neon-blue text-glow slide-in-left" href="#">
+                <i class="fas fa-futbol me-2 float-animation"></i>
+                <span class="fw-bold">⚽ ملاعب المستقبل</span>
+            </a>
+            <div class="navbar-nav ms-auto slide-in-right">
+                <!-- سيتم إضافة عناصر المصادقة هنا بواسطة JavaScript -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- القسم الرئيسي المصغر -->
+    <div class="hero-section-compact py-4 mt-5 pt-5" style="margin-top: 100px !important;"
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h2 class="text-neon-blue text-glow fw-bold mb-3">
+                        🌟 مرحباً بك 🌟
+                    </h2>
+                    <p class="text-white fs-6 mb-2">
+                        ✨ احجز ملعبك المفضل بتقنية متطورة وتجربة لا تُنسى ✨
+                    </p>
+                    <p class="text-white-50 small mb-3">
+                        اختر اليوم المناسب من الأيام المتاحة أدناه لبدء عملية الحجز
+                    </p>
+                    <div class="d-flex justify-content-center gap-2 flex-wrap mb-3">
+                        <span class="badge bg-gradient text-neon-green fs-6 p-2">
+                            <i class="fas fa-rocket me-1"></i>حجز فوري
+                        </span>
+                        <span class="badge bg-gradient text-neon-purple fs-6 p-2">
+                            <i class="fas fa-shield-alt me-1"></i>آمان تام
+                        </span>
+                        <span class="badge bg-gradient text-neon-yellow fs-6 p-2">
+                            <i class="fas fa-star me-1"></i>جودة عالية
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- قسم اختيار الأيام الثوري -->
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-12 text-center mb-5 fade-in-up">
+                <h2 class="text-neon-purple text-glow fw-bold mb-4">
+                    <i class="fas fa-calendar-alt me-3 float-animation"></i>
+                    📅 اختر اليوم المناسب 📅
+                </h2>
+                <p class="text-white fs-5">حدد اليوم المثالي لمباراتك الرائعة</p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center slide-in-up" id="daysContainer">
+            <!-- سيتم إضافة الأيام هنا بواسطة JavaScript -->
+        </div>
+
+        <!-- زر الحجز الثوري -->
+        <div class="text-center mt-5 fade-in-up">
+            <button class="btn-revolutionary btn-primary-rev btn-lg px-5 py-3" onclick="proceedToBooking()">
+                <i class="fas fa-rocket me-3"></i>
+                🚀 ابدأ رحلة الحجز المذهلة 🚀
+                <i class="fas fa-arrow-left ms-3"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- تذييل الصفحة الثوري -->
+    <footer class="glass-dark text-center py-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <h4 class="text-neon-blue text-glow mb-3">
+                        <i class="fas fa-futbol me-2 float-animation"></i>
+                        ملاعب المستقبل
+                    </h4>
+                    <p class="text-white fs-5">تجربة حجز لا تُنسى بتقنية متطورة</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="glass-effect p-3 hover-glow">
+                        <i class="fas fa-phone text-neon-green fs-3 mb-2"></i>
+                        <p class="text-white mb-0">📞 اتصل بنا</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="glass-effect p-3 hover-glow">
+                        <i class="fas fa-envelope text-neon-purple fs-3 mb-2"></i>
+                        <p class="text-white mb-0">📧 راسلنا</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="glass-effect p-3 hover-glow">
+                        <i class="fas fa-map-marker-alt text-neon-yellow fs-3 mb-2"></i>
+                        <p class="text-white mb-0">📍 موقعنا</p>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: rgba(255,255,255,0.3);">
+            <p class="text-white mb-0">
+                &copy; 2024 ملاعب المستقبل. جميع الحقوق محفوظة.
+                <span class="text-neon-blue">✨ صُنع بحب وتقنية متطورة ✨</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- رسائل التنبيه -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="alertToast" class="toast" role="alert">
+            <div class="toast-header">
+                <strong class="me-auto">تنبيه</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body" id="toastMessage">
+                <!-- رسالة التنبيه -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- ملفات JavaScript المخصصة -->
+    <script src="firebase-config-dynamic.js"></script>
+    <script src="security-simple.js"></script>
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        // 🎨 تهيئة الخلفية الثابتة
+        function initStaticBackground() {
+            // لا حاجة لإنشاء جسيمات متحركة
+            console.log('تم تهيئة الخلفية الثابتة الأسطورية');
+        }
+
+        // 🌟 تأثير تغيير شريط التنقل عند التمرير
+        function setupNavbarScroll() {
+            const navbar = document.getElementById('mainNavbar');
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // 🚀 دالة الانتقال للحجز
+        function proceedToBooking() {
+            // تأثير انتقال سلس
+            document.body.style.transition = 'all 0.5s ease';
+            document.body.style.transform = 'scale(0.95)';
+            document.body.style.opacity = '0.8';
+
+            setTimeout(() => {
+                window.location.href = 'times.html';
+            }, 500);
+        }
+
+        // حماية الصفحة الرئيسية - يجب تسجيل الدخول
+        window.addEventListener('load', function() {
+            // تهيئة التأثيرات البصرية
+            initStaticBackground();
+            setupNavbarScroll();
+
+            // تأثير ظهور فوري للصفحة
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.2s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 50);
+            // فحص فوري للمصادقة
+            const savedUser = localStorage.getItem('ma3ab_current_user');
+            if (!savedUser) {
+                console.log('الصفحة الرئيسية: المستخدم غير مسجل دخول، إعادة توجيه لصفحة الترحيب');
+                window.location.href = 'welcome.html';
+                return;
+            }
+
+            // إذا كان المستخدم مسجل دخول، تحديث شريط التنقل
+            setTimeout(function() {
+                console.log('تحديث شريط التنقل في الصفحة الرئيسية');
+
+                const navbar = document.querySelector('.navbar-nav');
+
+                if (navbar) {
+                    // إزالة العناصر القديمة
+                    const oldItems = navbar.querySelectorAll('.auth-item');
+                    oldItems.forEach(item => item.remove());
+
+                    try {
+                        const user = JSON.parse(savedUser);
+                        console.log('المستخدم مسجل دخول:', user.fullName);
+
+                        // إضافة معلومات المستخدم
+                        const userInfo = document.createElement('li');
+                        userInfo.className = 'nav-item auth-item';
+                        userInfo.innerHTML = `
+                            <span class="nav-link text-white">
+                                <i class="fas fa-user me-1"></i>
+                                ${user.fullName}
+                            </span>
+                        `;
+                        navbar.appendChild(userInfo);
+
+                        // إضافة لوحة التحكم للمشرفين
+                        if (user.role === 'admin') {
+                            const adminItem = document.createElement('li');
+                            adminItem.className = 'nav-item auth-item';
+                            adminItem.innerHTML = `
+                                <a class="nav-link" href="admin.html">
+                                    <i class="fas fa-cog me-1"></i>
+                                    لوحة التحكم
+                                </a>
+                            `;
+                            navbar.appendChild(adminItem);
+                        }
+
+                        // إضافة تسجيل الخروج
+                        const logoutItem = document.createElement('li');
+                        logoutItem.className = 'nav-item auth-item';
+                        logoutItem.innerHTML = `
+                            <a class="nav-link" href="#" onclick="handleLogout()">
+                                <i class="fas fa-sign-out-alt me-1"></i>
+                                تسجيل الخروج
+                            </a>
+                        `;
+                        navbar.appendChild(logoutItem);
+
+                    } catch (error) {
+                        console.error('خطأ في قراءة بيانات المستخدم:', error);
+                        // إذا كانت البيانات تالفة، إعادة توجيه لتسجيل الدخول
+                        localStorage.removeItem('ma3ab_current_user');
+                        window.location.href = 'login.html';
+                    }
+                } else {
+                    console.error('لم يتم العثور على شريط التنقل');
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>

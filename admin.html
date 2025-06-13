@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - حجز الملاعب الخماسية</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <link href="revolutionary-design.css" rel="stylesheet">
+</head>
+<body>
+    <!-- خلفية ثابتة أسطورية -->
+    <div class="static-bg-effects"></div>
+
+    <!-- شريط التنقل المستقبلي -->
+    <nav class="navbar navbar-expand-lg navbar-futuristic" id="adminNavbar">
+        <div class="container">
+            <a class="navbar-brand text-neon-purple text-glow slide-in-left" href="admin.html">
+                <i class="fas fa-crown me-2 float-animation"></i>
+                <span class="fw-bold">👑 مركز القيادة المستقبلي</span>
+            </a>
+            <div class="navbar-nav ms-auto slide-in-right">
+                <a class="nav-link text-neon-yellow hover-glow" href="security-dashboard.html">
+                    <i class="fas fa-shield-alt me-1"></i>
+                    🛡️ لوحة الأمان
+                </a>
+                <a class="nav-link text-neon-blue hover-glow" href="index.html">
+                    <i class="fas fa-home me-1"></i>
+                    🏠 الرئيسية
+                </a>
+                <!-- سيتم إضافة عناصر المصادقة هنا بواسطة JavaScript -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- قسم لوحة التحكم الساحرة -->
+    <div class="admin-magical-section">
+        <div class="admin-bg-effects">
+            <div class="data-stream stream-1"></div>
+            <div class="data-stream stream-2"></div>
+            <div class="data-stream stream-3"></div>
+        </div>
+        <div class="container my-5 pt-5">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card-magical-admin fade-in-up">
+                        <div class="text-center mb-5">
+                            <div class="admin-crown-container mb-4">
+                                <div class="crown-glow"></div>
+                                <i class="fas fa-crown admin-crown float-animation"></i>
+                                <div class="crown-particles">
+                                    <div class="particle-admin particle-1"></div>
+                                    <div class="particle-admin particle-2"></div>
+                                    <div class="particle-admin particle-3"></div>
+                                </div>
+                            </div>
+                            <h1 class="admin-title text-shimmer fw-bold mb-3">
+                                👑 مركز القيادة الساحر 👑
+                            </h1>
+                            <p class="text-glow-soft fs-4">إدارة سحرية لجميع الحجوزات والعمليات</p>
+                        </div>
+                        <!-- إحصائيات سريعة مستقبلية -->
+                        <div class="row mb-5 slide-in-left">
+                            <div class="col-md-3 mb-4">
+                                <div class="card-revolutionary hover-glow hover-scale text-center">
+                                    <i class="fas fa-chart-line text-neon-blue fs-1 mb-3 float-animation"></i>
+                                    <h2 id="totalBookings" class="text-neon-blue text-glow fw-bold">0</h2>
+                                    <p class="text-white fs-5 mb-0">📊 إجمالي الحجوزات</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4">
+                                <div class="card-revolutionary hover-glow hover-scale text-center">
+                                    <i class="fas fa-calendar-day text-neon-green fs-1 mb-3 float-animation"></i>
+                                    <h2 id="todayBookings" class="text-neon-green text-glow fw-bold">0</h2>
+                                    <p class="text-white fs-5 mb-0">📅 حجوزات اليوم</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4">
+                                <div class="card-revolutionary hover-glow hover-scale text-center">
+                                    <i class="fas fa-clock text-neon-yellow fs-1 mb-3 float-animation"></i>
+                                    <h2 id="upcomingBookings" class="text-neon-yellow text-glow fw-bold">0</h2>
+                                    <p class="text-white fs-5 mb-0">⏰ الحجوزات القادمة</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4">
+                                <div class="card-revolutionary hover-glow hover-scale text-center">
+                                    <i class="fas fa-futbol text-neon-purple fs-1 mb-3 float-animation"></i>
+                                    <h2 id="activeFields" class="text-neon-purple text-glow fw-bold">4</h2>
+                                    <p class="text-white fs-5 mb-0">⚽ الملاعب النشطة</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- فلاتر البحث المستقبلية -->
+                        <div class="card-revolutionary mb-5 slide-in-right">
+                            <h4 class="text-neon-green text-glow text-center mb-4">
+                                <i class="fas fa-search me-2 float-animation"></i>
+                                🔍 مركز البحث المتطور 🔍
+                            </h4>
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <div class="position-relative">
+                                        <i class="fas fa-search position-absolute" style="right: 20px; top: 50%; transform: translateY(-50%); color: var(--neon-blue); z-index: 10;"></i>
+                                        <input type="text" class="input-futuristic" id="searchInput" placeholder="🔍 البحث بالاسم أو رقم الهاتف" style="padding-right: 60px;">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="position-relative">
+                                        <i class="fas fa-clock position-absolute" style="right: 20px; top: 50%; transform: translateY(-50%); color: var(--neon-purple); z-index: 10;"></i>
+                                        <select class="input-futuristic" id="timeFilter" style="padding-right: 60px;">
+                                            <option value="">⏰ جميع الأوقات</option>
+                                            <option value="15:00">🕒 3:00 عصراً</option>
+                                            <option value="16:00">🕓 4:00 عصراً</option>
+                                            <option value="17:00">🕔 5:00 عصراً</option>
+                                            <option value="18:00">🕕 6:00 مساءً</option>
+                                            <option value="19:00">🕖 7:00 مساءً</option>
+                                            <option value="20:00">🕗 8:00 مساءً</option>
+                                            <option value="21:00">🕘 9:00 مساءً</option>
+                                            <option value="22:00">🕙 10:00 مساءً</option>
+                                            <option value="23:00">🕚 11:00 مساءً</option>
+                                            <option value="00:00">🕛 12:00 منتصف الليل</option>
+                                            <option value="01:00">🕐 1:00 صباحاً</option>
+                                            <option value="02:00">🕑 2:00 صباحاً</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="position-relative">
+                                        <i class="fas fa-calendar position-absolute" style="right: 20px; top: 50%; transform: translateY(-50%); color: var(--neon-green); z-index: 10;"></i>
+                                        <input type="date" class="input-futuristic" id="dateFilter" style="padding-right: 60px;">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn-revolutionary btn-success-rev w-100" onclick="refreshBookings()">
+                                        <i class="fas fa-sync-alt me-2"></i>
+                                        🔄 تحديث
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- جدول الحجوزات المستقبلي -->
+                        <div class="table-futuristic slide-in-up">
+                            <div class="text-center mb-4">
+                                <h4 class="text-neon-blue text-glow">
+                                    <i class="fas fa-table me-2 float-animation"></i>
+                                    📋 قاعدة بيانات الحجوزات المتطورة 📋
+                                </h4>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">#️⃣</th>
+                                            <th class="text-center">👤 الاسم الكامل</th>
+                                            <th class="text-center">📱 رقم الهاتف</th>
+                                            <th class="text-center">📅 تاريخ الحجز</th>
+                                            <th class="text-center">⏰ توقيت الحجز</th>
+                                            <th class="text-center">🕒 تاريخ الإنشاء</th>
+                                            <th class="text-center">⚙️ الإجراءات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="bookingsTableBody" class="text-white">
+                                        <!-- سيتم إضافة الحجوزات هنا بواسطة JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- رسالة عدم وجود بيانات -->
+                        <div id="noDataMessage" class="text-center py-5 d-none">
+                            <i class="fas fa-calendar-times fa-3x text-muted mb-3"></i>
+                            <h5 class="text-muted">لا توجد حجوزات حالياً</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal لحذف الحجز -->
+    <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">تأكيد الحذف</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    هل أنت متأكد من حذف هذا الحجز؟
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                    <button type="button" class="btn btn-danger" id="confirmDelete">حذف</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- رسائل التنبيه -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="alertToast" class="toast" role="alert">
+            <div class="toast-header">
+                <strong class="me-auto">تنبيه</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body" id="toastMessage">
+                <!-- رسالة التنبيه -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- ملفات JavaScript المخصصة -->
+    <script src="firebase-config-dynamic.js"></script>
+    <script src="security-simple.js"></script>
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        // 🎨 إنشاء الجسيمات المتحركة
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+
+                // ألوان عشوائية للجسيمات
+                const colors = ['var(--neon-blue)', 'var(--neon-purple)', 'var(--neon-green)', 'var(--neon-yellow)'];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.background = randomColor;
+                particle.style.boxShadow = `0 0 10px ${randomColor}`;
+
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // 🌟 تأثير تغيير شريط التنقل عند التمرير
+        function setupNavbarScroll() {
+            const navbar = document.getElementById('adminNavbar');
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // حماية إضافية لصفحة الإدارة
+        window.addEventListener('load', function() {
+            // تهيئة التأثيرات البصرية
+            createParticles();
+            setupNavbarScroll();
+
+            // تأثير ظهور تدريجي للصفحة
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 1s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+
+            setTimeout(function() {
+                const savedUser = localStorage.getItem('ma3ab_current_user');
+                if (!savedUser) {
+                    console.log('لا يوجد مستخدم محفوظ، إعادة توجيه لتسجيل الدخول');
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                // استخدام الدالة المساعدة الموحدة
+                const user = getCurrentUserData();
+
+                if (!user) {
+                    console.log('لا يوجد مستخدم، إعادة توجيه لتسجيل الدخول');
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                if (user.role !== 'admin') {
+                    console.log('المستخدم ليس مشرف، إعادة توجيه للصفحة الرئيسية');
+                    alert('ليس لديك صلاحية للوصول لهذه الصفحة');
+                    window.location.href = 'index.html';
+                } else {
+                    console.log('المستخدم مشرف، السماح بالوصول');
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>

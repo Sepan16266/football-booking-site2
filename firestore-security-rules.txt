@@ -1,0 +1,131 @@
+// 🛡️ قواعد الحماية المتقدمة لـ Firestore
+// انسخ هذا الكود في Firebase Console > Firestore > Rules
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // 🔐 قواعد مجموعة المستخدمين
+    match /users/{userId} {
+      // السماح بالقراءة للمستخدم نفسه أو المشرفين
+      allow read: if isAuthenticated() && 
+                     (isOwner(userId) || isAdmin());
+      
+      // السماح بالكتابة للمستخدم نفسه أو المشرفين
+      allow write: if isAuthenticated() && 
+                      (isOwner(userId) || isAdmin()) &&
+                      isValidUserData();
+      
+      // السماح بإنشاء حساب جديد (للتسجيل)
+      allow create: if isValidNewUser();
+    }
+    
+    // 🏟️ قواعد مجموعة الحجوزات
+    match /bookings/{bookingId} {
+      // السماح بالقراءة للمستخدم صاحب الحجز أو المشرفين
+      allow read: if isAuthenticated() && 
+                     (isBookingOwner(bookingId) || isAdmin());
+      
+      // السماح بإنشاء حجز جديد للمستخدمين المصادق عليهم
+      allow create: if isAuthenticated() && 
+                       isValidBookingData() &&
+                       isBookingOwner(bookingId);
+      
+      // السماح بالتحديث للمشرفين فقط
+      allow update: if isAuthenticated() && isAdmin();
+      
+      // السماح بالحذف للمشرفين فقط
+      allow delete: if isAuthenticated() && isAdmin();
+    }
+    
+    // 🚨 قواعد مجموعة تنبيهات الأمان (للمشرفين فقط)
+    match /security_alerts/{alertId} {
+      allow read, write: if isAuthenticated() && isAdmin();
+      allow create: if true; // السماح للنظام بإنشاء التنبيهات
+    }
+    
+    // 📊 قواعد مجموعة الإحصائيات (للمشرفين فقط)
+    match /statistics/{statId} {
+      allow read, write: if isAuthenticated() && isAdmin();
+    }
+    
+    // 🔒 منع الوصول لأي مجموعات أخرى
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+  
+  // 🔍 دوال التحقق المساعدة
+  
+  // التحقق من المصادقة
+  function isAuthenticated() {
+    return request.auth != null;
+  }
+  
+  // التحقق من كون المستخدم مشرف
+  function isAdmin() {
+    return isAuthenticated() && 
+           get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+  }
+  
+  // التحقق من كون المستخدم صاحب الحساب
+  function isOwner(userId) {
+    return isAuthenticated() && request.auth.uid == userId;
+  }
+  
+  // التحقق من كون المستخدم صاحب الحجز
+  function isBookingOwner(bookingId) {
+    return isAuthenticated() && 
+           resource.data.userId == request.auth.uid;
+  }
+  
+  // التحقق من صحة بيانات المستخدم
+  function isValidUserData() {
+    let data = request.resource.data;
+    return data.keys().hasAll(['username', 'fullName', 'phone', 'role']) &&
+           data.username is string && data.username.size() >= 3 &&
+           data.fullName is string && data.fullName.size() >= 2 &&
+           data.phone is string && data.phone.size() >= 10 &&
+           data.role in ['admin', 'customer'] &&
+           data.isActive is bool;
+  }
+  
+  // التحقق من صحة بيانات المستخدم الجديد
+  function isValidNewUser() {
+    let data = request.resource.data;
+    return data.keys().hasAll(['username', 'fullName', 'phone', 'passwordHash', 'passwordSalt', 'role', 'isActive']) &&
+           data.username is string && data.username.size() >= 3 &&
+           data.fullName is string && data.fullName.size() >= 2 &&
+           data.phone is string && data.phone.size() >= 10 &&
+           data.passwordHash is string && data.passwordHash.size() > 0 &&
+           data.passwordSalt is string && data.passwordSalt.size() > 0 &&
+           data.role == 'customer' && // المستخدمون الجدد عملاء فقط
+           data.isActive == true;
+  }
+  
+  // التحقق من صحة بيانات الحجز
+  function isValidBookingData() {
+    let data = request.resource.data;
+    return data.keys().hasAll(['fullName', 'phoneNumber', 'bookingDate', 'bookingTime', 'userId']) &&
+           data.fullName is string && data.fullName.size() >= 2 &&
+           data.phoneNumber is string && data.phoneNumber.size() >= 10 &&
+           data.bookingDate is string &&
+           data.bookingTime is string &&
+           data.userId is string &&
+           data.userId == request.auth.uid; // التأكد من أن الحجز للمستخدم نفسه
+  }
+}
+
+// 📝 تعليمات التطبيق:
+// 1. اذهب إلى Firebase Console
+// 2. اختر مشروعك
+// 3. اذهب إلى Firestore Database
+// 4. اضغط على تبويب "Rules"
+// 5. احذف القواعد الموجودة
+// 6. انسخ والصق القواعد أعلاه
+// 7. اضغط "Publish"
+
+// ⚠️ ملاحظة مهمة:
+// هذه القواعد تتطلب Firebase Authentication
+// إذا كنت تستخدم نظام المصادقة المخصص، 
+// ستحتاج لتعديل القواعد أو استخدام Firebase Auth

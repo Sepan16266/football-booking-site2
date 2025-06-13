@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إعداد WhatsApp - CallMeBot</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .setup-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .step-card {
+            border: none;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .step-number {
+            background: #25D366;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-left: 15px;
+        }
+        
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 25px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .code-box {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+        
+        .copy-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 12px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="setup-container">
+        <div class="text-center mb-4">
+            <h1 class="display-4 text-success">
+                <i class="fab fa-whatsapp me-3"></i>
+                إعداد WhatsApp
+            </h1>
+            <p class="lead text-muted">إعداد إرسال رسائل تأكيد الحجز عبر WhatsApp</p>
+        </div>
+
+        <!-- الخطوة 1 -->
+        <div class="card step-card">
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="step-number">1</div>
+                    <h5 class="mb-0">إضافة رقم CallMeBot</h5>
+                </div>
+                <p>أضف هذا الرقم إلى جهات الاتصال في WhatsApp:</p>
+                <div class="code-box">
+                    <button class="copy-btn" onclick="copyToClipboard('+34 644 59 71 67')">نسخ</button>
+                    <strong>+34 644 59 71 67</strong>
+                </div>
+                <a href="https://wa.me/34644597167" target="_blank" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp me-2"></i>فتح في WhatsApp
+                </a>
+            </div>
+        </div>
+
+        <!-- الخطوة 2 -->
+        <div class="card step-card">
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="step-number">2</div>
+                    <h5 class="mb-0">إرسال رسالة التفعيل</h5>
+                </div>
+                <p>أرسل هذه الرسالة بالضبط إلى الرقم:</p>
+                <div class="code-box">
+                    <button class="copy-btn" onclick="copyToClipboard('I allow callmebot to send me messages')">نسخ</button>
+                    <strong>I allow callmebot to send me messages</strong>
+                </div>
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <strong>مهم:</strong> يجب كتابة الرسالة بالإنجليزية بالضبط كما هو مكتوب
+                </div>
+            </div>
+        </div>
+
+        <!-- الخطوة 3 -->
+        <div class="card step-card">
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="step-number">3</div>
+                    <h5 class="mb-0">الحصول على API Key</h5>
+                </div>
+                <p>ستحصل على رد يحتوي على API Key مثل هذا:</p>
+                <div class="code-box">
+                    <strong>CallMeBot: Your API key is: 123456</strong>
+                </div>
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i>
+                    احتفظ بهذا الرقم - ستحتاجه في الخطوة التالية
+                </div>
+            </div>
+        </div>
+
+        <!-- الخطوة 4 -->
+        <div class="card step-card">
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="step-number">4</div>
+                    <h5 class="mb-0">تحديث إعدادات الموقع</h5>
+                </div>
+                <p>افتح ملف <code>firebase-config.js</code> وحدث هذا الجزء:</p>
+                <div class="code-box">
+<pre>const CALLMEBOT_CONFIG = {
+    // ضع هنا رقم هاتفك (بدون + أو 00)
+    phoneNumber: '966501234567', // مثال
+    // ضع هنا API Key الذي حصلت عليه
+    apiKey: '123456' // ضع الرقم الذي حصلت عليه
+};</pre>
+                </div>
+                
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <label class="form-label">رقم هاتفك:</label>
+                        <input type="tel" class="form-control" id="phoneInput" placeholder="966501234567">
+                        <small class="text-muted">بدون + أو 00، ابدأ برمز البلد</small>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">API Key:</label>
+                        <input type="text" class="form-control" id="apiKeyInput" placeholder="123456">
+                        <small class="text-muted">الرقم الذي حصلت عليه من CallMeBot</small>
+                    </div>
+                </div>
+                
+                <button class="btn btn-success mt-3" onclick="generateConfig()">
+                    <i class="fas fa-code me-2"></i>إنشاء الكود
+                </button>
+                
+                <div id="generatedCode" class="mt-3" style="display: none;">
+                    <h6>انسخ هذا الكود وضعه في ملف firebase-config.js:</h6>
+                    <div class="code-box">
+                        <button class="copy-btn" onclick="copyGeneratedCode()">نسخ الكود</button>
+                        <pre id="codeOutput"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- الخطوة 5 -->
+        <div class="card step-card">
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="step-number">5</div>
+                    <h5 class="mb-0">اختبار الإرسال</h5>
+                </div>
+                <p>بعد تحديث الإعدادات:</p>
+                <ul>
+                    <li>جرب حجز جديد من الموقع</li>
+                    <li>يجب أن تصلك رسالة WhatsApp بتفاصيل الحجز</li>
+                    <li>تحقق من وحدة تحكم المتصفح (F12) للتأكد من عدم وجود أخطاء</li>
+                </ul>
+                
+                <div class="text-center">
+                    <a href="index.html" class="btn btn-primary">
+                        <i class="fas fa-arrow-right me-2"></i>العودة للموقع
+                    </a>
+                    <a href="test-firebase.html" class="btn btn-secondary ms-2">
+                        <i class="fas fa-vial me-2"></i>اختبار Firebase
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ملاحظات مهمة -->
+        <div class="alert alert-warning">
+            <h6><i class="fas fa-exclamation-triangle me-2"></i>ملاحظات مهمة:</h6>
+            <ul class="mb-0">
+                <li>CallMeBot مجاني لكن له حدود يومية (حوالي 100 رسالة)</li>
+                <li>قد تتأخر الرسائل أحياناً بضع دقائق</li>
+                <li>تأكد من أن رقم هاتفك صحيح ومفعل على WhatsApp</li>
+                <li>يمكنك إيقاف إرسال الرسائل بحذف الإعدادات من الكود</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                alert('تم نسخ النص: ' + text);
+            });
+        }
+        
+        function generateConfig() {
+            const phone = document.getElementById('phoneInput').value.trim();
+            const apiKey = document.getElementById('apiKeyInput').value.trim();
+            
+            if (!phone || !apiKey) {
+                alert('يرجى إدخال رقم الهاتف و API Key');
+                return;
+            }
+            
+            const code = `const CALLMEBOT_CONFIG = {
+    phoneNumber: '${phone}',
+    apiKey: '${apiKey}'
+};`;
+            
+            document.getElementById('codeOutput').textContent = code;
+            document.getElementById('generatedCode').style.display = 'block';
+        }
+        
+        function copyGeneratedCode() {
+            const code = document.getElementById('codeOutput').textContent;
+            navigator.clipboard.writeText(code).then(function() {
+                alert('تم نسخ الكود! الصقه في ملف firebase-config.js');
+            });
+        }
+    </script>
+</body>
+</html>

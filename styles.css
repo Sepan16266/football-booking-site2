@@ -1,0 +1,326 @@
+/* ملف التنسيق الرئيسي لموقع حجز الملاعب */
+
+/* الخطوط والألوان الأساسية */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    line-height: 1.6;
+}
+
+/* القسم الرئيسي (Hero Section) */
+.hero-section {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+    background-size: 50px 50px;
+}
+
+/* عناوين الأقسام */
+.section-title {
+    color: #2c3e50;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, #28a745, #20c997);
+    border-radius: 2px;
+}
+
+/* بطاقات الأيام */
+.day-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.day-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.day-card .card-body {
+    padding: 1.5rem;
+}
+
+.day-card .card-title {
+    color: #2c3e50;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.day-card .btn {
+    border-radius: 25px;
+    padding: 10px 30px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.day-card .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+}
+
+/* بطاقات الأوقات */
+.time-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.time-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.time-card .card-body {
+    padding: 1.5rem;
+}
+
+.time-card .card-title {
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.time-card .btn {
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.time-card .btn:hover:not(.disabled) {
+    transform: translateY(-2px);
+}
+
+/* نموذج الحجز */
+.form-control {
+    border-radius: 10px;
+    border: 2px solid #e9ecef;
+    padding: 12px 15px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+.form-label {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 8px;
+}
+
+/* الأزرار */
+.btn {
+    border-radius: 10px;
+    padding: 12px 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    border: none;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #218838 0%, #1ea085 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+}
+
+/* جدول الحجوزات */
+.table {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.table thead th {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    font-weight: 600;
+    border: none;
+    padding: 15px;
+}
+
+.table tbody td {
+    padding: 15px;
+    vertical-align: middle;
+    border-color: #e9ecef;
+}
+
+.table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* بطاقات الإحصائيات */
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* رسائل التنبيه */
+.toast {
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.alert {
+    border-radius: 10px;
+    border: none;
+    padding: 20px;
+}
+
+/* Loading Spinner */
+.spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* شريط التنقل */
+.navbar {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+/* التذييل */
+footer {
+    margin-top: auto;
+}
+
+/* تحسينات للشاشات الصغيرة */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 60px 0;
+    }
+    
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .field-card {
+        margin-bottom: 20px;
+    }
+    
+    .table-responsive {
+        font-size: 0.9rem;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+/* تحسينات إضافية */
+.card-header {
+    border-radius: 15px 15px 0 0 !important;
+}
+
+.modal-content {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.modal-header {
+    border-bottom: 1px solid #e9ecef;
+    border-radius: 15px 15px 0 0;
+}
+
+/* تأثيرات الحركة */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* تحسين مظهر الفلاتر */
+.form-control, .form-select {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+/* تحسين مظهر الأيقونات */
+.fas, .far {
+    margin-left: 5px;
+}
+
+/* تحسين مظهر الجدول في الشاشات الصغيرة */
+@media (max-width: 576px) {
+    .table-responsive table {
+        font-size: 0.8rem;
+    }
+    
+    .table-responsive th,
+    .table-responsive td {
+        padding: 8px;
+    }
+}

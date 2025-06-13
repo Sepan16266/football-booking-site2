@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تشخيص نظام المصادقة</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { padding: 20px; font-family: Arial, sans-serif; }
+        .debug-box { background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        .success { color: green; }
+        .error { color: red; }
+        .info { color: blue; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 تشخيص نظام المصادقة</h1>
+        
+        <div class="debug-box">
+            <h5>حالة localStorage:</h5>
+            <div id="localStorageStatus"></div>
+        </div>
+        
+        <div class="debug-box">
+            <h5>بيانات المستخدم المحفوظة:</h5>
+            <div id="userData"></div>
+        </div>
+        
+        <div class="debug-box">
+            <h5>الصفحة الحالية:</h5>
+            <div id="currentPage"></div>
+        </div>
+        
+        <div class="debug-box">
+            <h5>إجراءات:</h5>
+            <button class="btn btn-danger" onclick="clearUserData()">مسح بيانات المستخدم</button>
+            <button class="btn btn-success" onclick="testLogin()">محاكاة تسجيل دخول</button>
+            <button class="btn btn-info" onclick="refreshData()">تحديث البيانات</button>
+        </div>
+        
+        <div class="debug-box">
+            <h5>روابط الاختبار:</h5>
+            <a href="login.html" class="btn btn-primary">صفحة تسجيل الدخول</a>
+            <a href="admin.html" class="btn btn-warning">صفحة الإدارة</a>
+            <a href="index.html" class="btn btn-secondary">الصفحة الرئيسية</a>
+        </div>
+    </div>
+
+    <script>
+        const USER_STORAGE_KEY = 'ma3ab_current_user';
+        
+        function refreshData() {
+            // حالة localStorage
+            const savedUser = localStorage.getItem(USER_STORAGE_KEY);
+            const localStorageDiv = document.getElementById('localStorageStatus');
+            
+            if (savedUser) {
+                localStorageDiv.innerHTML = '<span class="success">✅ يوجد بيانات محفوظة</span>';
+            } else {
+                localStorageDiv.innerHTML = '<span class="error">❌ لا توجد بيانات محفوظة</span>';
+            }
+            
+            // بيانات المستخدم
+            const userDataDiv = document.getElementById('userData');
+            if (savedUser) {
+                try {
+                    const user = JSON.parse(savedUser);
+                    userDataDiv.innerHTML = `
+                        <div class="success">
+                            <strong>اسم المستخدم:</strong> ${user.username}<br>
+                            <strong>الاسم الكامل:</strong> ${user.fullName}<br>
+                            <strong>الدور:</strong> ${user.role}<br>
+                            <strong>المعرف:</strong> ${user.id}
+                        </div>
+                    `;
+                } catch (error) {
+                    userDataDiv.innerHTML = '<span class="error">❌ خطأ في قراءة البيانات: ' + error.message + '</span>';
+                }
+            } else {
+                userDataDiv.innerHTML = '<span class="info">ℹ️ لا توجد بيانات مستخدم</span>';
+            }
+            
+            // الصفحة الحالية
+            const currentPageDiv = document.getElementById('currentPage');
+            const currentPage = window.location.pathname.split('/').pop();
+            currentPageDiv.innerHTML = `<span class="info">📄 ${currentPage || 'index.html'}</span>`;
+        }
+        
+        function clearUserData() {
+            localStorage.removeItem(USER_STORAGE_KEY);
+            alert('تم مسح بيانات المستخدم');
+            refreshData();
+        }
+        
+        function testLogin() {
+            const testUser = {
+                id: 'test123',
+                username: 'admin',
+                fullName: 'المشرف الرئيسي',
+                phone: '1234567890',
+                role: 'admin'
+            };
+            
+            localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(testUser));
+            alert('تم حفظ بيانات اختبار');
+            refreshData();
+        }
+        
+        // تحديث البيانات عند تحميل الصفحة
+        window.addEventListener('load', refreshData);
+        
+        // تحديث البيانات كل ثانية
+        setInterval(refreshData, 1000);
+    </script>
+</body>
+</html>

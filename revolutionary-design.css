@@ -1,0 +1,1641 @@
+/* 🎨 التصميم الثوري - Revolutionary Design System */
+
+/* ===== متغيرات الألوان المتقدمة ===== */
+:root {
+    /* الألوان الأساسية */
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --warning-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    --danger-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    
+    /* ألوان النيون */
+    --neon-blue: #00d4ff;
+    --neon-purple: #b537f2;
+    --neon-green: #39ff14;
+    --neon-pink: #ff073a;
+    --neon-yellow: #ffff00;
+    
+    /* الخلفيات المتحركة */
+    --bg-animated: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    --bg-glass: rgba(255, 255, 255, 0.1);
+    --bg-dark-glass: rgba(0, 0, 0, 0.2);
+    
+    /* الظلال المتقدمة */
+    --shadow-glow: 0 0 20px rgba(102, 126, 234, 0.4);
+    --shadow-neon: 0 0 30px var(--neon-blue);
+    --shadow-deep: 0 20px 40px rgba(0, 0, 0, 0.3);
+    --shadow-float: 0 10px 30px rgba(0, 0, 0, 0.2);
+    
+    /* الخطوط */
+    --font-primary: 'Poppins', 'Cairo', sans-serif;
+    --font-secondary: 'Roboto', 'Tajawal', sans-serif;
+    
+    /* المسافات */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    
+    /* الانتقالات المحسنة للسرعة الخارقة */
+    --transition-instant: 0.05s ease;
+    --transition-lightning: 0.1s ease;
+    --transition-fast: 0.15s ease;
+    --transition-smooth: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ===== إعادة تعيين عامة ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    background: var(--bg-animated);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    color: #fff;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* ===== الخلفية المتحركة ===== */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ===== تأثيرات الزجاج المتقدمة ===== */
+.glass-effect {
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: var(--shadow-glow);
+}
+
+.glass-dark {
+    background: var(--bg-dark-glass);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== الأزرار الثورية ===== */
+.btn-revolutionary {
+    position: relative;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: var(--transition-lightning);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 1;
+}
+
+.btn-revolutionary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: var(--transition-smooth);
+    z-index: -1;
+}
+
+.btn-revolutionary:hover::before {
+    left: 100%;
+}
+
+.btn-revolutionary:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-float);
+}
+
+.btn-primary-rev {
+    background: var(--primary-gradient);
+    color: white;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.btn-success-rev {
+    background: var(--success-gradient);
+    color: white;
+    box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+}
+
+.btn-warning-rev {
+    background: var(--warning-gradient);
+    color: white;
+    box-shadow: 0 8px 25px rgba(67, 233, 123, 0.4);
+}
+
+.btn-danger-rev {
+    background: var(--danger-gradient);
+    color: white;
+    box-shadow: 0 8px 25px rgba(250, 112, 154, 0.4);
+}
+
+/* ===== البطاقات المتطورة ===== */
+.card-revolutionary {
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: var(--spacing-lg);
+    margin: var(--spacing-md);
+    box-shadow: var(--shadow-deep);
+    transition: var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-revolutionary::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent, var(--neon-blue), transparent);
+    animation: rotate 4s linear infinite;
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.card-revolutionary:hover::before {
+    opacity: 0.1;
+}
+
+.card-revolutionary:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--shadow-neon);
+}
+
+@keyframes rotate {
+    100% { transform: rotate(360deg); }
+}
+
+/* ===== النصوص المتوهجة ===== */
+.text-glow {
+    text-shadow: 0 0 10px currentColor;
+    animation: pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+    from { text-shadow: 0 0 10px currentColor; }
+    to { text-shadow: 0 0 20px currentColor, 0 0 30px currentColor; }
+}
+
+.text-neon-blue {
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px var(--neon-blue);
+}
+
+.text-neon-purple {
+    color: var(--neon-purple);
+    text-shadow: 0 0 10px var(--neon-purple);
+}
+
+.text-neon-green {
+    color: var(--neon-green);
+    text-shadow: 0 0 10px var(--neon-green);
+}
+
+/* ===== حقول الإدخال المستقبلية ===== */
+.input-futuristic {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 15px 20px;
+    color: white;
+    font-size: 16px;
+    transition: var(--transition-instant);
+    backdrop-filter: blur(10px);
+}
+
+.input-futuristic::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.input-futuristic:focus {
+    outline: none;
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* ===== شريط التنقل المستقبلي ===== */
+.navbar-futuristic {
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: var(--spacing-md) 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: var(--transition-smooth);
+}
+
+.navbar-futuristic.scrolled {
+    background: var(--bg-dark-glass);
+    box-shadow: var(--shadow-glow);
+}
+
+/* ===== الجداول المتطورة ===== */
+.table-futuristic {
+    background: var(--bg-glass);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-deep);
+}
+
+.table-futuristic th {
+    background: var(--primary-gradient);
+    color: white !important;
+    padding: var(--spacing-md);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.table-futuristic td {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition-instant);
+    color: white !important;
+    font-weight: 500;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.table-futuristic tr:hover td {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.01);
+}
+
+/* إصلاح ألوان النصوص في الجداول */
+.table-futuristic .text-white,
+.table-futuristic tbody tr td,
+.table-futuristic tbody tr th {
+    color: white !important;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+/* إصلاح ألوان الأرقام في البطاقات */
+.card-revolutionary h1,
+.card-revolutionary h2,
+.card-revolutionary h3,
+.card-revolutionary h4,
+.card-revolutionary h5,
+.card-revolutionary h6 {
+    color: inherit !important;
+}
+
+/* إصلاح ألوان النصوص في الأيام */
+.day-card .day-number,
+.day-card .day-name {
+    color: white !important;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    font-weight: bold;
+}
+
+/* إصلاح ألوان أزرار الأوقات */
+.time-slot {
+    color: white !important;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    font-weight: 600;
+}
+
+.time-slot.available {
+    background: var(--success-gradient) !important;
+    color: white !important;
+}
+
+.time-slot.booked {
+    background: var(--danger-gradient) !important;
+    color: white !important;
+}
+
+.time-slot:hover {
+    color: white !important;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* إصلاح ألوان النصوص في البطاقات الثورية */
+.card-revolutionary * {
+    color: inherit;
+}
+
+.card-revolutionary .text-white {
+    color: white !important;
+}
+
+.card-revolutionary .text-neon-blue {
+    color: var(--neon-blue) !important;
+}
+
+.card-revolutionary .text-neon-green {
+    color: var(--neon-green) !important;
+}
+
+.card-revolutionary .text-neon-purple {
+    color: var(--neon-purple) !important;
+}
+
+.card-revolutionary .text-neon-yellow {
+    color: var(--neon-yellow) !important;
+}
+
+.card-revolutionary .text-neon-pink {
+    color: var(--neon-pink) !important;
+}
+
+/* بطاقات الأوقات المحجوزة */
+.card-revolutionary-danger {
+    background: linear-gradient(135deg, rgba(220, 53, 69, 0.2), rgba(108, 117, 125, 0.2));
+    backdrop-filter: blur(15px);
+    border: 2px solid var(--neon-pink);
+    border-radius: 20px;
+    padding: var(--spacing-lg);
+    box-shadow: 0 0 30px rgba(220, 53, 69, 0.3);
+    transition: var(--transition-smooth);
+}
+
+.card-revolutionary-danger:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 40px rgba(220, 53, 69, 0.5);
+}
+
+/* ===== بطاقات الأيام المربعة ===== */
+.day-card-square {
+    aspect-ratio: 1;
+    min-height: 150px;
+    max-height: 180px;
+    border-radius: 20px;
+    transition: var(--transition-lightning);
+}
+
+.day-card-square:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 0 40px var(--neon-blue);
+}
+
+/* ===== بطاقات الأوقات المربعة ===== */
+.time-card-square-available {
+    background: linear-gradient(135deg, rgba(40, 167, 69, 0.1), rgba(255, 255, 255, 0.1));
+    border: 2px solid #28a745;
+    border-radius: 15px;
+    transition: var(--transition-lightning);
+}
+
+.time-card-square-available:hover {
+    background: linear-gradient(135deg, rgba(40, 167, 69, 0.2), rgba(255, 255, 255, 0.2));
+    border-color: #20c997;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 0 25px rgba(40, 167, 69, 0.4);
+}
+
+.time-card-square-booked {
+    background: linear-gradient(135deg, rgba(220, 53, 69, 0.1), rgba(108, 117, 125, 0.1));
+    border: 2px solid #dc3545;
+    border-radius: 15px;
+    opacity: 0.7;
+    transition: var(--transition-lightning);
+}
+
+.time-card-square-booked:hover {
+    background: linear-gradient(135deg, rgba(220, 53, 69, 0.2), rgba(108, 117, 125, 0.2));
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(220, 53, 69, 0.3);
+}
+
+/* ===== إصلاح ألوان النصوص في البطاقات المربعة ===== */
+.time-card-square-available h5,
+.time-card-square-booked h5 {
+    color: black !important;
+    text-shadow: none !important;
+    font-weight: bold !important;
+}
+
+.day-card-square .day-name {
+    color: var(--neon-purple) !important;
+    text-shadow: 0 0 10px var(--neon-purple) !important;
+}
+
+.day-card-square .day-number {
+    color: var(--neon-green) !important;
+    text-shadow: 0 0 15px var(--neon-green) !important;
+    font-size: 2rem !important;
+}
+
+/* ===== تحسينات السرعة الخارقة ===== */
+.lightning-fast {
+    transition: var(--transition-instant) !important;
+}
+
+.instant-response {
+    transition: var(--transition-lightning) !important;
+}
+
+/* تحسين الأداء للعناصر المتحركة */
+.float-animation,
+.hover-glow,
+.hover-scale {
+    will-change: transform, box-shadow;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* تحسين الرسوم المتحركة */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) translateZ(0);
+    }
+    50% {
+        transform: translateY(-10px) translateZ(0);
+    }
+}
+
+/* تحسين تأثيرات الهوفر للسرعة */
+.hover-scale:hover {
+    transform: scale(1.05) translateZ(0);
+    transition: var(--transition-lightning);
+}
+
+.hover-glow:hover {
+    box-shadow: 0 0 30px var(--neon-blue);
+    transition: var(--transition-lightning);
+}
+
+/* تحسين الجسيمات للأداء */
+.particle {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* ===== مؤشر السرعة الخارقة ===== */
+.speed-indicator {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--bg-glass);
+    border: 2px solid var(--neon-blue);
+    border-radius: 50px;
+    padding: 10px 20px;
+    color: var(--neon-blue);
+    font-weight: bold;
+    z-index: 9999;
+    backdrop-filter: blur(10px);
+    animation: pulse-speed 1s infinite;
+}
+
+@keyframes pulse-speed {
+    0%, 100% {
+        box-shadow: 0 0 20px var(--neon-blue);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 40px var(--neon-blue);
+        transform: scale(1.05);
+    }
+}
+
+/* تحسين عام للأداء */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ===== تصميم الجمال المطلق ===== */
+
+/* القسم الرئيسي المصغر */
+.hero-section-compact {
+    position: relative;
+    background:
+        radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.08) 0%, transparent 60%),
+        linear-gradient(135deg,
+            rgba(26, 26, 46, 0.8) 0%,
+            rgba(22, 33, 62, 0.8) 50%,
+            rgba(26, 26, 46, 0.8) 100%);
+    border-radius: 20px;
+    margin: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* العنوان الساحر */
+.hero-title {
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.title-word {
+    display: inline-block;
+    margin: 0 0.5rem;
+    position: relative;
+    animation: title-glow 3s ease-in-out infinite;
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), var(--neon-green), var(--neon-yellow));
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 4s ease infinite, float-title 6s ease-in-out infinite;
+}
+
+.title-word:nth-child(1) { animation-delay: 0s; }
+.title-word:nth-child(2) { animation-delay: 0.5s; }
+.title-word:nth-child(3) { animation-delay: 1s; }
+.title-word:nth-child(4) { animation-delay: 1.5s; }
+
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes float-title {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-10px) rotate(1deg); }
+    66% { transform: translateY(5px) rotate(-1deg); }
+}
+
+/* تأثيرات الإضاءة الثابتة */
+.floating-orb {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.4;
+    filter: blur(2px);
+}
+
+.orb-1 {
+    width: 100px;
+    height: 100px;
+    top: 10%;
+    left: 10%;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.3) 0%, transparent 70%);
+}
+
+.orb-2 {
+    width: 150px;
+    height: 150px;
+    top: 20%;
+    right: 15%;
+    background: radial-gradient(circle, rgba(118, 75, 162, 0.25) 0%, transparent 70%);
+}
+
+.orb-3 {
+    width: 80px;
+    height: 80px;
+    bottom: 30%;
+    left: 20%;
+    background: radial-gradient(circle, rgba(67, 233, 123, 0.25) 0%, transparent 70%);
+}
+
+/* النصوص الساحرة */
+.text-shimmer {
+    background: linear-gradient(90deg,
+        var(--neon-blue) 0%,
+        var(--neon-purple) 25%,
+        var(--neon-green) 50%,
+        var(--neon-yellow) 75%,
+        var(--neon-blue) 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.text-glow-soft {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5),
+                 0 0 40px rgba(255, 255, 255, 0.3),
+                 0 0 60px rgba(255, 255, 255, 0.1);
+    animation: soft-glow 4s ease-in-out infinite;
+}
+
+@keyframes soft-glow {
+    0%, 100% {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.5),
+                     0 0 40px rgba(255, 255, 255, 0.3),
+                     0 0 60px rgba(255, 255, 255, 0.1);
+    }
+    50% {
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.8),
+                     0 0 60px rgba(255, 255, 255, 0.5),
+                     0 0 90px rgba(255, 255, 255, 0.3);
+    }
+}
+
+/* الأزرار السحرية */
+.btn-magical {
+    position: relative;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    z-index: 1;
+}
+
+.btn-primary-magical {
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+    color: white;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+}
+
+.btn-secondary-magical {
+    background: linear-gradient(45deg, var(--neon-green), var(--neon-yellow));
+    color: white;
+    box-shadow: 0 0 30px rgba(67, 233, 123, 0.5);
+}
+
+.btn-magical::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s ease;
+    z-index: -1;
+}
+
+.btn-magical:hover::before {
+    left: 100%;
+}
+
+.btn-magical:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.btn-particles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.btn-magical:hover .btn-particles::before,
+.btn-magical:hover .btn-particles::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    animation: particle-explosion 1s ease-out;
+}
+
+@keyframes particle-explosion {
+    0% {
+        opacity: 1;
+        transform: scale(0) translate(0, 0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1) translate(var(--random-x, 50px), var(--random-y, -50px));
+    }
+}
+
+/* تأثيرات الجمال الثابتة */
+.beauty-waves {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    opacity: 0.6;
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.wave-1 {
+    background: linear-gradient(to top,
+        rgba(0, 212, 255, 0.2) 0%,
+        rgba(0, 212, 255, 0.1) 50%,
+        transparent 100%);
+    opacity: 0.7;
+}
+
+.wave-2 {
+    background: linear-gradient(to top,
+        rgba(118, 75, 162, 0.15) 0%,
+        rgba(118, 75, 162, 0.08) 50%,
+        transparent 100%);
+    opacity: 0.5;
+}
+
+.wave-3 {
+    background: linear-gradient(to top,
+        rgba(67, 233, 123, 0.1) 0%,
+        rgba(67, 233, 123, 0.05) 50%,
+        transparent 100%);
+    opacity: 0.3;
+}
+
+/* تحسينات البطاقات للجمال المطلق */
+.card-revolutionary {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: var(--spacing-lg);
+    margin: var(--spacing-md);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    transition: var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-revolutionary::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg,
+        transparent,
+        var(--neon-blue),
+        transparent,
+        var(--neon-purple),
+        transparent);
+    animation: rotate 8s linear infinite;
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.card-revolutionary:hover::before {
+    opacity: 0.1;
+}
+
+.card-revolutionary:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.2) inset,
+                0 0 50px var(--neon-blue);
+}
+
+/* ===== صفحة تسجيل الدخول الأسطورية ===== */
+.login-magical-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 25% 25%, rgba(0, 212, 255, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 75% 25%, rgba(118, 75, 162, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 25% 75%, rgba(67, 233, 123, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(255, 193, 7, 0.08) 0%, transparent 50%),
+        linear-gradient(135deg,
+            #0a0a0a 0%,
+            #1a1a2e 25%,
+            #16213e 50%,
+            #0f3460 75%,
+            #2d1b69 100%);
+    z-index: -1;
+}
+
+/* تأثيرات ثابتة للخلفية */
+.floating-shapes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    opacity: 0.6;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.15;
+    filter: blur(1px);
+}
+
+.shape-1 {
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    left: 10%;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.3) 0%, transparent 70%);
+}
+
+.shape-2 {
+    width: 150px;
+    height: 150px;
+    top: 60%;
+    right: 20%;
+    background: radial-gradient(circle, rgba(67, 233, 123, 0.25) 0%, transparent 70%);
+}
+
+.shape-3 {
+    width: 100px;
+    height: 100px;
+    bottom: 20%;
+    left: 30%;
+    background: radial-gradient(circle, rgba(118, 75, 162, 0.25) 0%, transparent 70%);
+}
+
+.shape-4 {
+    width: 250px;
+    height: 250px;
+    top: 30%;
+    right: 10%;
+    background: radial-gradient(circle, rgba(255, 193, 7, 0.2) 0%, transparent 70%);
+}
+
+.card-magical-login {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(30px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 3rem;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+                0 0 100px rgba(0, 212, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-magical-login::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg,
+        var(--neon-blue),
+        var(--neon-purple),
+        var(--neon-green),
+        var(--neon-yellow));
+    border-radius: 30px;
+    z-index: -1;
+    animation: border-glow 4s linear infinite;
+}
+
+@keyframes border-glow {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+.login-icon-container {
+    position: relative;
+    display: inline-block;
+}
+
+.icon-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, var(--neon-blue), transparent);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: icon-pulse 3s ease-in-out infinite;
+    z-index: -1;
+}
+
+.login-icon {
+    font-size: 4rem;
+    color: var(--neon-blue);
+    text-shadow: 0 0 30px var(--neon-blue);
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes icon-pulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 1;
+    }
+}
+
+.login-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* ===== صفحة الأوقات الأسطورية ===== */
+.times-magical-section {
+    position: relative;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 30% 20%, rgba(0, 212, 255, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 70% 30%, rgba(118, 75, 162, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 20% 80%, rgba(67, 233, 123, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 80% 80%, rgba(255, 193, 7, 0.08) 0%, transparent 45%),
+        linear-gradient(135deg,
+            #0a0a0a 0%,
+            #1a1a2e 25%,
+            #16213e 50%,
+            #0f3460 75%,
+            #2d1b69 100%);
+}
+
+.times-bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(ellipse at 50% 20%, rgba(0, 212, 255, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 80%, rgba(118, 75, 162, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 80%, rgba(67, 233, 123, 0.06) 0%, transparent 60%);
+    opacity: 0.9;
+}
+
+.card-magical-times {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(25px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 35px;
+    padding: 3rem;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+                0 0 120px rgba(0, 212, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.times-icon-container {
+    position: relative;
+    display: inline-block;
+}
+
+.clock-rings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ring {
+    position: absolute;
+    border: 2px solid;
+    border-radius: 50%;
+    animation: ring-rotate 8s linear infinite;
+}
+
+.ring-1 {
+    width: 100px;
+    height: 100px;
+    border-color: var(--neon-blue);
+    animation-duration: 8s;
+    top: -50px;
+    left: -50px;
+}
+
+.ring-2 {
+    width: 130px;
+    height: 130px;
+    border-color: var(--neon-purple);
+    animation-duration: 12s;
+    animation-direction: reverse;
+    top: -65px;
+    left: -65px;
+}
+
+.ring-3 {
+    width: 160px;
+    height: 160px;
+    border-color: var(--neon-green);
+    animation-duration: 16s;
+    top: -80px;
+    left: -80px;
+}
+
+@keyframes ring-rotate {
+    0% { transform: rotate(0deg); opacity: 0.3; }
+    50% { opacity: 0.7; }
+    100% { transform: rotate(360deg); opacity: 0.3; }
+}
+
+.times-icon {
+    font-size: 4rem;
+    color: var(--neon-purple);
+    text-shadow: 0 0 40px var(--neon-purple);
+    position: relative;
+    z-index: 10;
+}
+
+.times-title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* تحسين بطاقات الأوقات للجمال المطلق */
+.time-card-square-available {
+    background: linear-gradient(135deg,
+        rgba(67, 233, 123, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 100%);
+    border: 2px solid var(--neon-green);
+    border-radius: 20px;
+    transition: var(--transition-lightning);
+    position: relative;
+    overflow: hidden;
+}
+
+.time-card-square-available::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent, var(--neon-green), transparent);
+    animation: rotate 6s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.time-card-square-available:hover::before {
+    opacity: 0.1;
+}
+
+.time-card-square-available:hover {
+    background: linear-gradient(135deg,
+        rgba(67, 233, 123, 0.2) 0%,
+        rgba(255, 255, 255, 0.1) 100%);
+    border-color: var(--neon-yellow);
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(67, 233, 123, 0.3),
+                0 0 60px var(--neon-green);
+}
+
+.time-card-square-booked {
+    background: linear-gradient(135deg,
+        rgba(220, 53, 69, 0.1) 0%,
+        rgba(108, 117, 125, 0.05) 100%);
+    border: 2px solid var(--neon-pink);
+    border-radius: 20px;
+    opacity: 0.6;
+    transition: var(--transition-lightning);
+    position: relative;
+}
+
+.time-card-square-booked:hover {
+    background: linear-gradient(135deg,
+        rgba(220, 53, 69, 0.15) 0%,
+        rgba(108, 117, 125, 0.1) 100%);
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px rgba(220, 53, 69, 0.2);
+}
+
+/* ===== لوحة التحكم الأسطورية ===== */
+.admin-magical-section {
+    position: relative;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 15% 15%, rgba(0, 212, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 85% 15%, rgba(118, 75, 162, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 15% 85%, rgba(67, 233, 123, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(255, 193, 7, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(114, 9, 183, 0.08) 0%, transparent 60%),
+        linear-gradient(135deg,
+            #0a0a0a 0%,
+            #1a1a2e 20%,
+            #16213e 40%,
+            #0f3460 60%,
+            #2d1b69 80%,
+            #1a1a2e 100%);
+    overflow: hidden;
+}
+
+.admin-bg-effects {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    opacity: 0.3;
+}
+
+.data-stream {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    opacity: 0.4;
+}
+
+.stream-1 {
+    left: 20%;
+    background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(67, 233, 123, 0.6) 30%,
+        rgba(67, 233, 123, 0.8) 50%,
+        rgba(67, 233, 123, 0.6) 70%,
+        transparent 100%);
+}
+
+.stream-2 {
+    left: 50%;
+    background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(118, 75, 162, 0.6) 30%,
+        rgba(118, 75, 162, 0.8) 50%,
+        rgba(118, 75, 162, 0.6) 70%,
+        transparent 100%);
+}
+
+.stream-3 {
+    right: 20%;
+    background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(255, 193, 7, 0.6) 30%,
+        rgba(255, 193, 7, 0.8) 50%,
+        rgba(255, 193, 7, 0.6) 70%,
+        transparent 100%);
+}
+
+.card-magical-admin {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(30px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+    padding: 3rem;
+    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+                0 0 150px rgba(114, 9, 183, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.admin-crown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.crown-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, var(--neon-yellow), transparent);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: crown-pulse 4s ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes crown-pulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.3);
+        opacity: 0.8;
+    }
+}
+
+.admin-crown {
+    font-size: 5rem;
+    color: var(--neon-yellow);
+    text-shadow: 0 0 50px var(--neon-yellow);
+    position: relative;
+    z-index: 10;
+}
+
+.crown-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.particle-admin {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--neon-yellow);
+    border-radius: 50%;
+    animation: particle-float 6s ease-in-out infinite;
+}
+
+.particle-1 {
+    top: 20%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.particle-2 {
+    top: 30%;
+    right: 25%;
+    animation-delay: 2s;
+    background: var(--neon-blue);
+}
+
+.particle-3 {
+    bottom: 25%;
+    left: 30%;
+    animation-delay: 4s;
+    background: var(--neon-purple);
+}
+
+@keyframes particle-float {
+    0%, 100% {
+        transform: translateY(0px) scale(1);
+        opacity: 0.7;
+    }
+    33% {
+        transform: translateY(-20px) scale(1.2);
+        opacity: 1;
+    }
+    66% {
+        transform: translateY(10px) scale(0.8);
+        opacity: 0.8;
+    }
+}
+
+.admin-title {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+/* ===== تأثيرات الجمال المطلق العامة ===== */
+
+/* تأثير الدوران للعناصر */
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* تأثير النبض الساحر */
+@keyframes magical-pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
+
+/* تأثير التوهج المتحرك */
+@keyframes moving-glow {
+    0% {
+        box-shadow: 0 0 20px var(--neon-blue);
+    }
+    25% {
+        box-shadow: 0 0 30px var(--neon-purple);
+    }
+    50% {
+        box-shadow: 0 0 25px var(--neon-green);
+    }
+    75% {
+        box-shadow: 0 0 35px var(--neon-yellow);
+    }
+    100% {
+        box-shadow: 0 0 20px var(--neon-blue);
+    }
+}
+
+/* تحسين الخطوط للجمال */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cairo', 'Poppins', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* تحسين الأزرار للجمال المطلق */
+.btn-revolutionary {
+    position: relative;
+    overflow: hidden;
+    border-radius: 25px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-revolutionary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-revolutionary:hover::before {
+    left: 100%;
+}
+
+.btn-revolutionary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* تحسين الحقول للجمال */
+.input-futuristic {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    color: white;
+    padding: 15px 20px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.input-futuristic:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+    outline: none;
+}
+
+.input-futuristic::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* تحسين الجداول للجمال المطلق */
+.table-futuristic {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(25px);
+    border-radius: 25px;
+    padding: 2rem;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    position: relative;
+}
+
+.table-futuristic::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg,
+        transparent,
+        rgba(0, 212, 255, 0.1),
+        transparent,
+        rgba(118, 75, 162, 0.1),
+        transparent);
+    animation: rotate 20s linear infinite;
+    opacity: 0.5;
+}
+
+/* تحسين شريط التنقل للجمال */
+.navbar-futuristic {
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.navbar-futuristic.scrolled {
+    background: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* تحسين الجسيمات للجمال */
+.particle {
+    border-radius: 50%;
+    animation: particle-dance 6s ease-in-out infinite;
+}
+
+@keyframes particle-dance {
+    0%, 100% {
+        transform: translateY(0px) translateX(0px) scale(1);
+        opacity: 0.7;
+    }
+    25% {
+        transform: translateY(-50px) translateX(30px) scale(1.2);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-100px) translateX(-20px) scale(0.8);
+        opacity: 0.9;
+    }
+    75% {
+        transform: translateY(-30px) translateX(-40px) scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+/* تأثيرات الهوفر المحسنة */
+.hover-magical:hover {
+    animation: magical-pulse 1s ease-in-out infinite;
+}
+
+.glow-border {
+    border: 2px solid transparent;
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple)) border-box;
+    border-radius: 20px;
+}
+
+/* تحسين التمرير */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, var(--neon-purple), var(--neon-green));
+}
+
+/* ===== التأثيرات المتحركة ===== */
+.float-animation {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.8s ease-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.slide-in-right {
+    animation: slideInRight 0.8s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== خلفية ثابتة أسطورية ===== */
+.static-bg-effects {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    background:
+        radial-gradient(circle at 10% 20%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 90% 20%, rgba(118, 75, 162, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 10% 80%, rgba(67, 233, 123, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(255, 193, 7, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.9) 0%, rgba(26, 26, 46, 0.95) 100%);
+}
+
+/* تأثيرات ثابتة للجمال */
+.static-particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    opacity: 0.6;
+}
+
+/* ===== الاستجابة للشاشات المختلفة ===== */
+@media (max-width: 768px) {
+    .card-revolutionary {
+        margin: var(--spacing-sm);
+        padding: var(--spacing-md);
+    }
+    
+    .btn-revolutionary {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+    
+    .input-futuristic {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+}
+
+/* ===== تأثيرات التحميل ===== */
+.loading-spinner-futuristic {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid var(--neon-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    box-shadow: 0 0 20px var(--neon-blue);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ===== تأثيرات الهوفر المتقدمة ===== */
+.hover-glow:hover {
+    box-shadow: var(--shadow-neon);
+    transform: translateY(-5px);
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+}
+
+.hover-rotate:hover {
+    transform: rotate(5deg);
+}
